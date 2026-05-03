@@ -33,7 +33,10 @@ function authorizeServiceCalendarSync(req: Request): boolean {
 async function handleSync(req: Request) {
   if (!authorizeServiceCalendarSync(req)) {
     return NextResponse.json(
-      { error: "Unauthorized — set CRON_SECRET or RACERCALENDAR_SERVICE_SYNC_SECRET and send Authorization: Bearer …" },
+      {
+        error:
+          "Unauthorized - set CRON_SECRET or RACERCALENDAR_SERVICE_SYNC_SECRET and send Authorization: Bearer <token>",
+      },
       { status: 401 },
     );
   }
