@@ -1,7 +1,11 @@
 import { Category } from "@prisma/client";
 import { NextResponse } from "next/server";
 
-import { signFeedPayload } from "@/lib/calendar-token";
+import {
+  calendarFeedMisconfigurationMessage,
+  resolveCalendarFeedSecret,
+  signFeedPayload,
+} from "@/lib/calendar-token";
 
 const ALLOWED: readonly Category[] = [
   Category.FORMULA,
@@ -46,12 +50,19 @@ export async function POST(req: Request) {
     freeOnly: (raw as { freeOnly: boolean }).freeOnly,
   };
 
+  if (!resolveCalendarFeedSecret().configured) {
+    return NextResponse.json(
+      { error: calendarFeedMisconfigurationMessage() },
+      { status: 503 },
+    );
+  }
+
   try {
     const token = signFeedPayload(payload);
     return NextResponse.json({ token });
   } catch {
     return NextResponse.json(
-      { error: "Signing failed — check CALENDAR_FEED_SECRET configuration" },
+      { error: "Could not sign calendar payload." },
       { status: 500 },
     );
   }
