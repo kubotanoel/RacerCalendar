@@ -20,8 +20,9 @@ export async function querySessionsForFeed(
   const categories: Category[] =
     payload.categories.length > 0 ? payload.categories : [];
 
+  /** Keep sessions that haven't ended yet (future + ongoing). */
   const baseWhere: Prisma.SessionWhereInput = {
-    startsAt: { gte: new Date(Date.now() - 24 * 60 * 60 * 1000) },
+    endsAt: { gte: new Date() },
     event: {
       series:
         categories.length > 0

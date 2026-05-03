@@ -2,9 +2,42 @@ import { Category } from "@prisma/client";
 
 import { prisma } from "../src/lib/prisma";
 
+/** Demo sessions anchored to “today” UTC so ICS feeds stay populated after redeploy/seeding. */
+function utcSession(
+  daysFromToday: number,
+  hourUTC: number,
+  minuteUTC: number,
+  durationMinutes: number,
+) {
+  const startsAt = new Date();
+  startsAt.setUTCHours(0, 0, 0, 0);
+  startsAt.setUTCDate(startsAt.getUTCDate() + daysFromToday);
+  startsAt.setUTCHours(hourUTC, minuteUTC, 0, 0);
+  const endsAt = new Date(startsAt.getTime() + durationMinutes * 60_000);
+  return { startsAt, endsAt };
+}
+
 async function main() {
   await prisma.googleAccount.deleteMany();
   await prisma.series.deleteMany();
+
+  const imsEventStart = new Date();
+  imsEventStart.setUTCHours(0, 0, 0, 0);
+  imsEventStart.setUTCDate(imsEventStart.getUTCDate() + 18);
+
+  const f1EventStart = new Date();
+  f1EventStart.setUTCHours(0, 0, 0, 0);
+  f1EventStart.setUTCDate(f1EventStart.getUTCDate() + 11);
+
+  const imsQual = utcSession(20, 19, 5, 55);
+  const imsRace = utcSession(21, 17, 40, 360);
+  const f1Fp = utcSession(12, 11, 35, 55);
+  const f1Race = utcSession(13, 13, 40, 240);
+
+  const imsEnd = new Date(imsRace.endsAt.getTime() + 24 * 60 * 60_000);
+  const f1End = new Date(f1Race.endsAt.getTime() + 24 * 60 * 60_000);
+
+  const y = imsEventStart.getUTCFullYear();
 
   await prisma.series.create({
     data: {
@@ -14,18 +47,18 @@ async function main() {
       events: {
         create: {
           name: "Sahlens Six Hours of The Glen",
-          slug: "2026-six-hours-of-the-glen",
+          slug: `demo-watkins-glen-${y}`,
           venueName: "Watkins Glen International",
           timezone: "America/New_York",
-          startDate: new Date("2026-06-18T08:00:00.000Z"),
-          endDate: new Date("2026-06-22T04:00:00.000Z"),
+          startDate: imsEventStart,
+          endDate: imsEnd,
           sessions: {
             create: [
               {
                 title: "Qualifying",
                 kind: "qualifying",
-                startsAt: new Date("2026-06-20T19:05:00.000Z"),
-                endsAt: new Date("2026-06-20T19:55:00.000Z"),
+                startsAt: imsQual.startsAt,
+                endsAt: imsQual.endsAt,
                 watchOptions: {
                   create: [
                     {
@@ -43,8 +76,8 @@ async function main() {
               {
                 title: "Six Hours race",
                 kind: "race",
-                startsAt: new Date("2026-06-21T17:40:00.000Z"),
-                endsAt: new Date("2026-06-21T23:40:00.000Z"),
+                startsAt: imsRace.startsAt,
+                endsAt: imsRace.endsAt,
                 watchOptions: {
                   create: [
                     {
@@ -82,18 +115,18 @@ async function main() {
       events: {
         create: {
           name: "Monaco Grand Prix",
-          slug: "2026-monaco",
+          slug: `demo-monaco-${y}`,
           venueName: "Circuit de Monaco",
           timezone: "Europe/Monaco",
-          startDate: new Date("2026-05-21T00:00:00.000Z"),
-          endDate: new Date("2026-05-25T06:00:00.000Z"),
+          startDate: f1EventStart,
+          endDate: f1End,
           sessions: {
             create: [
               {
                 title: "Practice 2",
                 kind: "practice",
-                startsAt: new Date("2026-05-23T11:35:00.000Z"),
-                endsAt: new Date("2026-05-23T12:25:00.000Z"),
+                startsAt: f1Fp.startsAt,
+                endsAt: f1Fp.endsAt,
                 watchOptions: {
                   create: [
                     {
@@ -110,8 +143,8 @@ async function main() {
               {
                 title: "Race",
                 kind: "race",
-                startsAt: new Date("2026-05-24T13:40:00.000Z"),
-                endsAt: new Date("2026-05-24T17:36:36.000Z"),
+                startsAt: f1Race.startsAt,
+                endsAt: f1Race.endsAt,
                 watchOptions: {
                   create: [
                     {
@@ -140,7 +173,9 @@ async function main() {
     },
   });
 
-  console.log("Seeded IMSA WeatherTech + Formula 1 with demo sessions.");
+  console.log(
+    `Seeded demo IMSA + F1 (${f1Fp.startsAt.toISOString().slice(0, 10)} … ${imsRace.endsAt.toISOString().slice(0, 10)})`,
+  );
 }
 
 main()
