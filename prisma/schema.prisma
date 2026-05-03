@@ -76,3 +76,11 @@ model GoogleAccount {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }
+
+/** Single shared calendar created by GOOGLE_* service-account sync; subscribers add this ID in Google Calendar. */
+model ServiceCalendarState {
+  id          String   @id @default("default")
+  calendarId  String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

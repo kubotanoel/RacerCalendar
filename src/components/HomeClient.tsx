@@ -34,6 +34,12 @@ export function HomeClient() {
     sessionRows: number;
     upcomingRows: number;
   } | null>(null);
+  const [publicGoogleCal, setPublicGoogleCal] = useState<{
+    credentialsConfigured: boolean;
+    calendarId: string | null;
+    subscribeHref: string | null;
+  } | null>(null);
+  const [copiedCalId, setCopiedCalId] = useState(false);
 
   const toggle = useCallback((c: Cat) => {
     setPicked((prev) => {
@@ -102,12 +108,45 @@ export function HomeClient() {
   useEffect(() => {
     fetch("/api/auth/status", { credentials: "same-origin" })
       .then((r) => r.json())
-      .then((j: { googleConfigured?: boolean; signedIn?: boolean; email?: string | null }) => {
-        setGoogleReady(!!j.googleConfigured);
-        if (j.signedIn && j.email) setSessionEmail(j.email);
-      })
+      .then(
+        (j: {
+          googleConfigured?: boolean;
+          signedIn?: boolean;
+          email?: string | null;
+          googleServiceCalendar?: {
+            credentialsConfigured?: boolean;
+            calendarId?: string | null;
+            subscribeHref?: string | null;
+          };
+        }) => {
+          setGoogleReady(!!j.googleConfigured);
+          if (j.signedIn && j.email) setSessionEmail(j.email);
+          const g = j.googleServiceCalendar;
+          if (g && typeof g.credentialsConfigured === "boolean") {
+            setPublicGoogleCal({
+              credentialsConfigured: g.credentialsConfigured,
+              calendarId:
+                typeof g.calendarId === "string" && g.calendarId ? g.calendarId : null,
+              subscribeHref:
+                typeof g.subscribeHref === "string" && g.subscribeHref ?
+                  g.subscribeHref
+                : null,
+            });
+          } else {
+            setPublicGoogleCal(null);
+          }
+        },
+      )
       .catch(() => {});
   }, []);
+
+  const copyPublicCalendarId = async () => {
+    const id = publicGoogleCal?.calendarId;
+    if (!id) return;
+    await navigator.clipboard.writeText(id);
+    setCopiedCalId(true);
+    window.setTimeout(() => setCopiedCalId(false), 2200);
+  };
 
   useEffect(() => {
     const o = searchParams?.get("oauth");
@@ -626,6 +665,68 @@ export function HomeClient() {
               </div>
             </div>
           }
+
+          {publicGoogleCal?.credentialsConfigured ?
+            <div
+              id="public-google-calendar"
+              className="rounded-2xl border border-violet-400/35 bg-gradient-to-br from-violet-950/80 via-zinc-950 to-zinc-950 p-5 shadow-[0_0_36px_-14px_rgba(139,92,246,0.45)]"
+            >
+              <div className="flex items-start gap-2">
+                <span className="rounded-md bg-violet-500 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-violet-950">
+                  Shared
+                </span>
+              </div>
+              <h2 className="mt-3 font-semibold tracking-tight text-white text-lg">
+                Public RacerCalendar (Google)
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-violet-100/85">
+                Our server keeps <strong className="text-white">one Google calendar</strong> anyone
+                can add — useful when you prefer Google&apos;s subscribe UI instead of Webcal.{" "}
+                <strong className="text-white">Same schedule for everyone:</strong> use your
+                personal feed below if you need filters (free-only, series).
+              </p>
+
+              {publicGoogleCal.subscribeHref && publicGoogleCal.calendarId ?
+                <>
+                  <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                    <a
+                      href={publicGoogleCal.subscribeHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-[2.75rem] flex-1 items-center justify-center rounded-xl bg-violet-500 px-5 py-2.5 text-center text-sm font-semibold text-white shadow-lg shadow-violet-950/50 transition hover:bg-violet-400"
+                    >
+                      Add to Google Calendar
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => void copyPublicCalendarId()}
+                      className="inline-flex min-h-[2.75rem] items-center justify-center rounded-xl border border-violet-400/40 bg-transparent px-4 py-2.5 text-sm font-medium text-violet-100 hover:bg-violet-500/10"
+                    >
+                      {copiedCalId ? "Copied" : "Copy calendar ID"}
+                    </button>
+                  </div>
+                  <p className="mt-3 break-all font-mono text-[10px] leading-relaxed text-violet-200/70 sm:text-[11px]">
+                    {publicGoogleCal.calendarId}
+                  </p>
+                </>
+              : <div className="mt-4 rounded-xl border border-amber-500/30 bg-amber-950/35 px-3 py-3 text-xs leading-relaxed text-amber-100">
+                  <p className="font-medium text-amber-50">First sync not run yet.</p>
+                  <p className="mt-2 text-amber-100/90">
+                    The host must call{" "}
+                    <code className="rounded bg-black/30 px-1 py-px text-[10px]">
+                      POST /api/calendar/service-sync
+                    </code>{" "}
+                    once with{" "}
+                    <code className="rounded bg-black/30 px-1 py-px text-[10px]">
+                      Authorization: Bearer …
+                    </code>{" "}
+                    (see <code className="rounded bg-black/30 px-1 py-px text-[10px]">.env.example</code>
+                    ). Vercel Cron can keep it updated after that.
+                  </p>
+                </div>
+              }
+            </div>
+          : null}
 
           <div
             id="subscribe-by-url"

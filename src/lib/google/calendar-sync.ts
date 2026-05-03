@@ -1,37 +1,9 @@
 import { google } from "googleapis";
 
 import type { SessionWithRelations } from "@/lib/session-query";
+import { sessionToGoogleCalendarEvent } from "@/lib/google/calendar-event-body";
 import { getOAuthClient } from "@/lib/google/oauth";
 import { prisma } from "@/lib/prisma";
-
-const DISCLAIMER =
-  "Broadcast rights change by region — verify streams locally. Links are informational.";
-
-function pickPrimaryUrl(s: SessionWithRelations): string | undefined {
-  const pick = [...s.watchOptions].sort(
-    (a, b) => Number(a.requiresPayment) - Number(b.requiresPayment),
-  );
-  return pick.find((w) => w.url)?.url;
-}
-
-function watchDescription(s: SessionWithRelations): string {
-  const freeOpts = s.watchOptions.filter((w) => !w.requiresPayment);
-  const opts = freeOpts.length ? freeOpts : s.watchOptions;
-  const lines =
-    opts.length === 0
-      ? "(No watch links on file)"
-      : opts
-          .map((w) => {
-            const cost = w.requiresPayment ? "(subscription may apply)" : "Free";
-            return `${cost} — ${w.platform}: ${w.url}${w.notes ? ` — ${w.notes}` : ""}`;
-          })
-          .join("\n");
-  return `${DISCLAIMER}\n\nVenue: ${s.event.venueName}\n\n${lines}`;
-}
-
-function sessionSummary(s: SessionWithRelations): string {
-  return `[${s.event.series.name}] ${s.event.name} — ${s.title}`;
-}
 
 /**
  * Ensures a dedicated calendar exists, wipes future-ish events inside it,
@@ -97,19 +69,7 @@ export async function upsertSessionsToCalendar(
   for (const s of sessions) {
     await calApi.events.insert({
       calendarId,
-      requestBody: {
-        summary: sessionSummary(s),
-        description: watchDescription(s),
-        location: s.event.venueName,
-        start: { dateTime: s.startsAt.toISOString(), timeZone: "UTC" },
-        end: { dateTime: s.endsAt.toISOString(), timeZone: "UTC" },
-        source: pickPrimaryUrl(s)
-          ? { title: `${s.title} watch`, url: pickPrimaryUrl(s)! }
-          : undefined,
-        extendedProperties: {
-          private: { racercalendar: "1", sessionId: s.id },
-        },
-      },
+      requestBody: sessionToGoogleCalendarEvent(s),
     });
     inserted += 1;
   }
