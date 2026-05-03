@@ -53,10 +53,14 @@ async function handleSync(req: Request) {
 
   let body: unknown = {};
   if (req.method === "POST") {
-    try {
-      body = await req.json();
-    } catch {
-      return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+    const raw = await req.text();
+    const trimmed = raw.trim();
+    if (trimmed) {
+      try {
+        body = JSON.parse(trimmed) as unknown;
+      } catch {
+        return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+      }
     }
   }
 
