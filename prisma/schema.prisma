@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Category {
+  FORMULA
+  SPORTSCAR
+  STOCK_CAR
+  MOTORCYCLE
+  RALLY
+  OTHER
+}
+
+model Series {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  category  Category
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  events    Event[]
+}
+
+model Event {
+  id        String    @id @default(cuid())
+  seriesId  String
+  series    Series    @relation(fields: [seriesId], references: [id], onDelete: Cascade)
+  name      String
+  slug      String
+  venueName String
+  timezone  String
+  startDate DateTime
+  endDate   DateTime?
+  sessions  Session[]
+
+  @@unique([seriesId, slug])
+}
+
+model Session {
+  id           String        @id @default(cuid())
+  eventId      String
+  event        Event         @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  title        String
+  kind         String?
+  startsAt     DateTime
+  endsAt       DateTime
+  watchOptions WatchOption[]
+}
+
+model WatchOption {
+  id              String    @id @default(cuid())
+  sessionId       String
+  session         Session   @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  platform        String
+  url             String
+  requiresPayment Boolean   @default(true)
+  notes           String?
+  regions         String?
+  sourceUrl       String?
+  lastVerifiedAt  DateTime?
+}
+
+model GoogleAccount {
+  id             String   @id @default(cuid())
+  googleSub      String   @unique
+  email          String
+  refreshToken   String
+  accessToken    String?
+  accessExpiry   DateTime?
+  calendarId     String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
