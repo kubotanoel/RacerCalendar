@@ -317,6 +317,9 @@ export function HomeClient() {
 
   const allSports = picked.size === 0;
 
+  const googleHeroSidecar =
+    !!publicGoogleCal?.subscribeHref || !!publicGoogleCal?.credentialsConfigured;
+
   const countBanner =
     sessionCount === null ? null : sessionCount === 0 ?
       dbTotals?.sessionRows === 0 ?
@@ -389,7 +392,8 @@ export function HomeClient() {
               A
             </span>
             <span className="pt-px">
-              Tap <strong className="text-emerald-50">Download .ics file</strong> below (
+              In <strong className="text-emerald-50">Other options</strong> tap{" "}
+              <strong className="text-emerald-50">Download .ics</strong> (
               same data as <strong className="text-emerald-50">Copy HTTPS feed</strong>
               ).
             </span>
@@ -444,7 +448,8 @@ export function HomeClient() {
               1
             </span>
             <span className="pt-px">
-              Tap <strong className="text-white">Copy HTTPS feed</strong> below.
+              In <strong className="text-white">Other options</strong> tap{" "}
+              <strong className="text-white">Copy HTTPS feed</strong>, then paste in Google Calendar.
             </span>
           </li>
           <li className="flex gap-3">
@@ -575,39 +580,253 @@ export function HomeClient() {
           </section>
         </div>
 
-        {/* Calendar actions column — sticky on desktop; listed first on mobile */}
+        {/* Calendar actions — unified hero + collapsible extras */}
         <aside className="order-1 flex flex-col gap-5 lg:order-2 lg:col-span-6 xl:col-span-5 lg:sticky lg:top-[5.25rem]">
+          <div
+            id="subscribe-by-url"
+            className="overflow-hidden rounded-3xl border-2 border-zinc-600/65 bg-gradient-to-b from-zinc-900 via-zinc-950 to-black p-5 shadow-xl shadow-black/40 lg:p-7"
+          >
+            <header className="space-y-1.5">
+              <h2 className="text-lg font-semibold tracking-tight text-white sm:text-xl">
+                Get races on your calendar
+              </h2>
+              <p className="text-xs leading-relaxed text-zinc-500 sm:text-[13px]">
+                One shared Google calendar for everyone, or a personal link that follows your
+                filters below.
+              </p>
+            </header>
+
+            <div
+              className={`mt-6 grid gap-3 ${googleHeroSidecar ? "sm:grid-cols-2" : ""}`}
+            >
+              {publicGoogleCal?.subscribeHref ?
+                <a
+                  href={publicGoogleCal.subscribeHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex min-h-[3.25rem] items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-violet-500 to-violet-600 px-5 py-3.5 text-center text-[15px] font-semibold text-white shadow-lg shadow-violet-950/50 ring-1 ring-white/10 transition hover:from-violet-400 hover:to-violet-500 hover:shadow-violet-900/55"
+                >
+                  <span className="drop-shadow-sm">Add to Google Calendar</span>
+                </a>
+              : publicGoogleCal?.credentialsConfigured ?
+                <div className="flex min-h-[3.25rem] flex-col justify-center rounded-2xl border border-dashed border-violet-500/35 bg-violet-950/25 px-4 py-3 text-center">
+                  <span className="text-sm font-semibold text-violet-200">
+                    Add to Google Calendar
+                  </span>
+                  <span className="mt-1 text-[11px] text-violet-300/85">
+                    First sync pending — host runs service-sync once.
+                  </span>
+                </div>
+              : null}
+
+              {webcalFeedUrl && !linkLoading && !signErr ?
+                <a
+                  href={webcalFeedUrl}
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-[3.25rem] items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 px-5 py-3.5 text-center text-[15px] font-semibold text-white shadow-lg shadow-emerald-950/45 ring-1 ring-white/10 transition hover:from-emerald-400 hover:to-emerald-500 sm:col-span-1"
+                >
+                  <span>Add to Calendar</span>
+                </a>
+              : <span
+                  className={`inline-flex min-h-[3.25rem] items-center justify-center rounded-2xl border border-zinc-600 bg-zinc-800/50 px-5 py-3.5 text-center text-[15px] font-semibold text-zinc-500 ${
+                    signErr ? "opacity-35" : linkLoading ? "opacity-55" : "opacity-40"
+                  }`}
+                  aria-disabled="true"
+                >
+                  Add to Calendar
+                </span>
+              }
+            </div>
+
+            <p className="mt-3 text-center text-[11px] leading-snug text-zinc-500 sm:text-left">
+              <strong className="font-medium text-zinc-400">Google:</strong> same full schedule for
+              all subscribers.&nbsp;
+              <strong className="font-medium text-zinc-400">Calendar app:</strong> respects your
+              series + free‑stream filters (
+              <span className="text-zinc-500">{linkLoading ? "loading…" : "Webcal subscription"}</span>
+              ).
+            </p>
+
+            <div className="mt-7 border-t border-zinc-700/90 pt-5">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-600">
+                Other options
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  disabled={!feedUrl || linkLoading || !!signErr || downloadBusy}
+                  onClick={() => void downloadIcsFile()}
+                  className="rounded-xl border border-zinc-600 bg-zinc-800/80 px-3.5 py-2 text-xs font-medium text-zinc-100 hover:bg-zinc-700 disabled:pointer-events-none disabled:opacity-35 sm:text-[13px]"
+                >
+                  {downloadBusy ? "Downloading…" : "Download .ics"}
+                </button>
+                <button
+                  type="button"
+                  disabled={!feedUrl || linkLoading || !!signErr}
+                  onClick={() => void copyUrl()}
+                  className="rounded-xl border border-zinc-600 bg-zinc-800/80 px-3.5 py-2 text-xs font-medium text-zinc-100 hover:bg-zinc-700 disabled:pointer-events-none disabled:opacity-35 sm:text-[13px]"
+                >
+                  {copied ? "Copied" : "Copy HTTPS feed"}
+                </button>
+                {publicGoogleCal?.calendarId ?
+                  <button
+                    type="button"
+                    onClick={() => void copyPublicCalendarId()}
+                    className="rounded-xl border border-zinc-600 bg-zinc-800/80 px-3.5 py-2 text-xs font-medium text-zinc-100 hover:bg-zinc-700 sm:text-[13px]"
+                  >
+                    {copiedCalId ? "Copied calendar ID" : "Copy calendar ID"}
+                  </button>
+                : null}
+              </div>
+
+              <p className="mt-3 font-mono text-[10px] leading-relaxed text-zinc-500 sm:text-[11px]">
+                {feedUrl ?
+                  <span className="break-all">{feedUrl}</span>
+                : signErr ?
+                  "Personal feed unavailable — fix error above."
+                : linkLoading ?
+                  "Personal feed signing…"
+                : "—"}
+              </p>
+
+              {!googleReady ?
+                <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-[11px]">
+                  <Link
+                    href={googleImportHelp}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-zinc-600 underline-offset-4 hover:text-zinc-400 hover:underline"
+                  >
+                    Google: Import
+                  </Link>
+                  <Link
+                    href={googleSubscribeHelp}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-zinc-600 underline-offset-4 hover:text-zinc-400 hover:underline"
+                  >
+                    Google: Subscribe URL
+                  </Link>
+                  <Link
+                    href={appleSubscribedCalendarHelp}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-zinc-600 underline-offset-4 hover:text-zinc-400 hover:underline"
+                  >
+                    Apple: Subscribed calendars
+                  </Link>
+                  <Link
+                    href={googleWebAddByUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-zinc-600 underline-offset-4 hover:text-zinc-400 hover:underline"
+                  >
+                    Gmail: Web add-by-URL
+                  </Link>
+                </div>
+              : null}
+
+              <details className="group mt-5 rounded-xl border border-zinc-700/70 bg-black/25">
+                <summary className="cursor-pointer select-none px-3 py-3 text-xs font-medium text-zinc-400 marker:text-zinc-500 hover:text-zinc-200">
+                  More help · mobile Gmail · Apple · steps
+                  <span className="mt-1 block font-normal text-[11px] text-zinc-600 group-open:hidden">
+                    Tap if Webcal/Google didn&apos;t cooperate.
+                  </span>
+                </summary>
+                <div className="space-y-4 border-t border-zinc-800 px-3 py-4 text-[12px] text-zinc-400">
+                  <div className="rounded-lg border border-sky-500/25 bg-sky-950/20 px-3 py-3 leading-relaxed">
+                    <p className="font-medium text-sky-100">
+                      Phones &amp; Google&apos;s cramped UI?
+                    </p>
+                    <p className="mt-2 text-sky-100/88">
+                      <strong className="text-white">Add to Calendar</strong> opens your app;{" "}
+                      <strong className="text-white">Download .ics</strong> from Files often works too.
+                      {googleReady ?
+                        <>
+                          {" "}
+                          <button
+                            type="button"
+                            className="-mx-px font-medium text-orange-300 underline decoration-orange-400/40 underline-offset-2 hover:text-orange-200"
+                            onClick={() =>
+                              document
+                                .getElementById("easiest-google")
+                                ?.scrollIntoView({ behavior: "smooth", block: "start" })
+                            }
+                          >
+                            Connect Google
+                          </button>{" "}
+                          writes into your Gmail calendar from our server (
+                          <button
+                            type="button"
+                            className="-mx-px font-medium text-orange-300 underline decoration-orange-400/40 underline-offset-2 hover:text-orange-200"
+                            onClick={() =>
+                              document
+                                .getElementById("easiest-google")
+                                ?.scrollIntoView({ behavior: "smooth", block: "start" })
+                            }
+                          >
+                            below
+                          </button>
+                          ).
+                        </>
+                      : null}{" "}
+                      <Link
+                        href={googleWebImportExport}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-orange-300 underline underline-offset-2 hover:text-orange-200"
+                      >
+                        Gmail import &amp; export
+                      </Link>
+                      {" · "}
+                      <Link
+                        href="https://formulacalendar.com/subscribe/"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-orange-300 underline underline-offset-2 hover:text-orange-200"
+                      >
+                        Formula&nbsp;Calendar
+                      </Link>
+                      .
+                    </p>
+                  </div>
+                  {googleSteps}
+                </div>
+              </details>
+
+              <p className="mt-5 text-[11px] leading-snug text-zinc-600">
+                Stream coverage varies by country — verify before lights&nbsp;out.
+              </p>
+            </div>
+          </div>
+
           {googleReady ?
             <div
               id="easiest-google"
-              className="overflow-hidden rounded-2xl border-2 border-orange-500/50 bg-gradient-to-br from-orange-950/85 via-zinc-950 to-zinc-950 p-6 shadow-[0_0_40px_-12px_rgba(234,88,12,0.45)]"
+              className="overflow-hidden rounded-2xl border border-orange-500/40 bg-gradient-to-br from-orange-950/85 via-zinc-950 to-zinc-950 p-5 shadow-[0_0_32px_-12px_rgba(234,88,12,0.4)]"
             >
-              <div className="flex items-start gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <span className="rounded-md bg-orange-500 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-orange-950">
-                  Easiest
+                  Optional
                 </span>
+                <h2 className="text-[15px] font-semibold text-white">
+                  Signed-in Google Calendar
+                </h2>
               </div>
-              <h2 className="mt-3 font-semibold tracking-tight text-white text-xl">
-                Add races with Google
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-orange-50/85">
-                We create a calendar called <strong>RacerCalendar</strong> in your
-                account — no digging through URLs and menus.
-              </p>
-              <p className="mt-2 text-[11px] leading-snug text-orange-50/68">
-                This is how a lot of event apps dodge Google’s cramped ICS menus: the server
-                updates your calendar for you instead of handing you brittle web flows.
+              <p className="mt-2 text-xs leading-relaxed text-orange-50/82">
+                We create / refresh <strong className="text-white">RacerCalendar</strong> in{" "}
+                <em>your</em> Gmail account (
+                <strong className="text-white">respects filters</strong> via Push sync).
               </p>
               {sessionEmail ?
-                <p className="mt-3 text-xs text-orange-100/95">{sessionEmail}</p>
+                <p className="mt-2 text-[11px] text-orange-100/90">{sessionEmail}</p>
               : null}
-
-              <div className="mt-5 flex flex-wrap gap-2">
+              <div className="mt-4 flex flex-wrap gap-2">
                 <button
                   type="button"
                   disabled={!connectHref}
                   onClick={startGoogleOAuth}
-                  className="rounded-xl bg-orange-500 px-5 py-2.5 text-sm font-semibold text-orange-950 shadow-lg shadow-orange-900/45 transition hover:bg-orange-400 disabled:pointer-events-none disabled:opacity-40"
+                  className="rounded-xl bg-orange-500 px-4 py-2.5 text-sm font-semibold text-orange-950 shadow-md shadow-orange-900/35 transition hover:bg-orange-400 disabled:pointer-events-none disabled:opacity-40"
                 >
                   Connect Google
                 </button>
@@ -615,306 +834,27 @@ export function HomeClient() {
                   type="button"
                   disabled={syncBusy || !token}
                   onClick={pushSyncManual}
-                  className="rounded-xl border border-orange-400/55 bg-transparent px-4 py-2.5 text-sm font-medium text-orange-50 hover:bg-orange-500/15 disabled:pointer-events-none disabled:opacity-40"
+                  className="rounded-xl border border-orange-400/50 bg-transparent px-3 py-2.5 text-sm font-medium text-orange-50 hover:bg-orange-500/12 disabled:pointer-events-none disabled:opacity-40"
                 >
-                  {syncBusy ? "Syncing…" : "Push / refresh races"}
+                  {syncBusy ? "Syncing…" : "Push / refresh"}
                 </button>
               </div>
               {syncMsg ?
-                <p className="mt-4 text-xs text-orange-50/95">{syncMsg}</p>
+                <p className="mt-3 text-[11px] text-orange-50/90">{syncMsg}</p>
               : null}
-
-              <p className="mt-4 border-t border-orange-500/25 pt-4 text-[11px] text-orange-50/65">
-                Can’t connect?{" "}
-                <button
-                  type="button"
-                  className="font-medium underline underline-offset-2 hover:text-white"
-                  onClick={() =>
-                    document
-                      .getElementById("subscribe-by-url")
-                      ?.scrollIntoView({ behavior: "smooth", block: "start" })
-                  }
-                >
-                  Use file / feed instead
-                </button>
-              </p>
-            </div>
-          : <div className="rounded-2xl border border-zinc-700/90 bg-zinc-900/50 p-5">
-              <p className="text-sm leading-relaxed text-zinc-300">
-                Direct Google sync isn’t switched on here — use{" "}
-                <strong className="text-white">Import</strong> (recommended) or{" "}
-                <strong className="text-white">From URL</strong> in the steps below.
-              </p>
-              <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-[11px]">
-                <Link
-                  href={googleImportHelp}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-zinc-500 underline-offset-4 hover:text-zinc-400 hover:underline"
-                >
-                  Google Help: Import events
-                </Link>
-                <Link
-                  href={googleSubscribeHelp}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-zinc-500 underline-offset-4 hover:text-zinc-400 hover:underline"
-                >
-                  Google Help: Subscribe from URL
-                </Link>
-              </div>
-            </div>
-          }
-
-          {publicGoogleCal?.credentialsConfigured ?
-            <div
-              id="public-google-calendar"
-              className="rounded-2xl border border-violet-400/35 bg-gradient-to-br from-violet-950/80 via-zinc-950 to-zinc-950 p-5 shadow-[0_0_36px_-14px_rgba(139,92,246,0.45)]"
-            >
-              <div className="flex items-start gap-2">
-                <span className="rounded-md bg-violet-500 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-violet-950">
-                  Shared
-                </span>
-              </div>
-              <h2 className="mt-3 font-semibold tracking-tight text-white text-lg">
-                Public RacerCalendar (Google)
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-violet-100/85">
-                Our server keeps <strong className="text-white">one Google calendar</strong> anyone
-                can add — useful when you prefer Google&apos;s subscribe UI instead of Webcal.{" "}
-                <strong className="text-white">Same schedule for everyone:</strong> use your
-                personal feed below if you need filters (free-only, series).
-              </p>
-
-              {publicGoogleCal.subscribeHref && publicGoogleCal.calendarId ?
-                <>
-                  <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                    <a
-                      href={publicGoogleCal.subscribeHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex min-h-[2.75rem] flex-1 items-center justify-center rounded-xl bg-violet-500 px-5 py-2.5 text-center text-sm font-semibold text-white shadow-lg shadow-violet-950/50 transition hover:bg-violet-400"
-                    >
-                      Add to Google Calendar
-                    </a>
-                    <button
-                      type="button"
-                      onClick={() => void copyPublicCalendarId()}
-                      className="inline-flex min-h-[2.75rem] items-center justify-center rounded-xl border border-violet-400/40 bg-transparent px-4 py-2.5 text-sm font-medium text-violet-100 hover:bg-violet-500/10"
-                    >
-                      {copiedCalId ? "Copied" : "Copy calendar ID"}
-                    </button>
-                  </div>
-                  <p className="mt-3 break-all font-mono text-[10px] leading-relaxed text-violet-200/70 sm:text-[11px]">
-                    {publicGoogleCal.calendarId}
-                  </p>
-                </>
-              : <div className="mt-4 rounded-xl border border-amber-500/30 bg-amber-950/35 px-3 py-3 text-xs leading-relaxed text-amber-100">
-                  <p className="font-medium text-amber-50">First sync not run yet.</p>
-                  <p className="mt-2 text-amber-100/90">
-                    The host must call{" "}
-                    <code className="rounded bg-black/30 px-1 py-px text-[10px]">
-                      POST /api/calendar/service-sync
-                    </code>{" "}
-                    once with{" "}
-                    <code className="rounded bg-black/30 px-1 py-px text-[10px]">
-                      Authorization: Bearer …
-                    </code>{" "}
-                    (see <code className="rounded bg-black/30 px-1 py-px text-[10px]">.env.example</code>
-                    ). Vercel Cron can keep it updated after that.
-                  </p>
-                </div>
-              }
+              <button
+                type="button"
+                className="mt-3 block text-[11px] font-medium text-orange-50/60 underline underline-offset-2 hover:text-orange-50"
+                onClick={() =>
+                  document
+                    .getElementById("subscribe-by-url")
+                    ?.scrollIntoView({ behavior: "smooth", block: "start" })
+                }
+              >
+                Prefer Webcal / public Google calendar above
+              </button>
             </div>
           : null}
-
-          <div
-            id="subscribe-by-url"
-            className="rounded-2xl border border-zinc-700/80 bg-zinc-950/65 p-5 lg:p-6"
-          >
-            <div>
-              <h2 className="text-[11px] font-semibold uppercase tracking-[0.16em] text-zinc-500">
-                Your calendar feed
-              </h2>
-              <p className="mt-1 max-w-[58ch] text-xs text-zinc-500 lg:text-[13px]">
-                Recommended: subscribe for live updates whenever this feed changes (filters
-                like only-free are baked into your link).{" "}
-                <strong className="font-medium text-zinc-400">Download .ics file</strong> is a
-                one-time snapshot. Same pattern as{" "}
-                <Link
-                  href="https://formulacalendar.com/subscribe/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-zinc-400 underline underline-offset-2 hover:text-zinc-300"
-                >
-                  Formula Calendar
-                </Link>
-                {" "}
-                and{" "}
-                <Link
-                  href="https://better-f1-calendar.vercel.app"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-zinc-400 underline underline-offset-2 hover:text-zinc-300"
-                >
-                  Better F1 Calendar
-                </Link>
-                .
-              </p>
-            </div>
-
-            <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3">
-              {webcalFeedUrl && !linkLoading && !signErr ?
-                <a
-                  href={webcalFeedUrl}
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-[3rem] items-center justify-center rounded-xl bg-emerald-600 px-5 py-3 text-center text-sm font-semibold text-white shadow-lg shadow-emerald-950/40 transition hover:bg-emerald-500"
-                >
-                  Subscribe with Webcal
-                </a>
-              :             <span
-                  className={`inline-flex min-h-[3rem] items-center justify-center rounded-xl bg-emerald-600/35 px-5 py-3 text-center text-sm font-semibold text-white ${
-                    signErr ? "opacity-35" : linkLoading ? "opacity-50" : "opacity-35"
-                  }`}
-                  aria-disabled="true"
-                >
-                  Subscribe with Webcal
-                </span>
-              }
-
-              <button
-                type="button"
-                disabled={!feedUrl || linkLoading || !!signErr || downloadBusy}
-                onClick={() => void downloadIcsFile()}
-                className="inline-flex min-h-[3rem] items-center justify-center rounded-xl border border-zinc-500 bg-zinc-800/90 px-5 py-3 text-center text-sm font-semibold text-zinc-100 hover:bg-zinc-700 disabled:pointer-events-none disabled:opacity-35"
-              >
-                {downloadBusy ? "Downloading…" : "Download .ics file"}
-              </button>
-            </div>
-
-            <p className="mt-2 text-[11px] leading-snug text-zinc-500">
-              <strong className="font-medium text-zinc-400">Webcal:</strong> on many phones —
-              especially iPhone — this opens Calendar and asks you to confirm a subscribed
-              calendar (often smoother than copying a URL).
-            </p>
-
-            <div className="mt-4 flex flex-wrap items-center gap-2 gap-y-2">
-              <span className="text-[11px] font-medium uppercase tracking-wide text-zinc-600">
-                Or copy URL:
-              </span>
-              <button
-                type="button"
-                disabled={!feedUrl || linkLoading || !!signErr}
-                onClick={() => void copyUrl()}
-                className="rounded-lg bg-white px-3 py-2 text-xs font-semibold text-zinc-900 hover:bg-zinc-100 disabled:pointer-events-none disabled:opacity-35 sm:text-sm"
-              >
-                {copied ? "Copied" : "Copy HTTPS feed"}
-              </button>
-            </div>
-
-            <div className="mt-3 break-all rounded-xl border border-dashed border-zinc-700 bg-black/35 px-3 py-2.5 font-mono text-[10px] leading-relaxed text-zinc-400 sm:text-[11px] lg:text-[12px]">
-              {feedUrl ?
-                feedUrl
-              : signErr ?
-                "— Link could not be created (see notice above)."
-              : linkLoading ?
-                "Building your calendar link…"
-              : "—"}
-            </div>
-
-            <div className="mt-4 rounded-xl border border-sky-500/30 bg-sky-950/35 px-3 py-3 text-[12px] leading-relaxed text-sky-50/95 lg:text-[13px]">
-              <p className="font-semibold text-sky-100">
-                Prefer not to wrestle calendar.google.com on mobile?
-              </p>
-              <p className="mt-2 text-sky-100/90">
-                Subscribing via URL is standardized (ICS/webcal); what isn’t standardized is{" "}
-                <strong className="text-white">whether each vendor ships a sane mobile UI</strong>
-                .
-                {googleReady ?
-                  <>
-                    {" "}
-                    Plenty of ticketing and sports apps avoid leaving you inside Google’s
-                    cramped web console by syncing through your login instead{" "}
-                    <button
-                      type="button"
-                      className="-mx-px font-medium text-orange-300 underline decoration-orange-400/40 underline-offset-2 hover:text-orange-200"
-                      onClick={() =>
-                        document
-                          .getElementById("easiest-google")
-                          ?.scrollIntoView({ behavior: "smooth", block: "start" })
-                      }
-                    >
-                      (tap Connect Google above).
-                    </button>
-                  </>
-                : <>
-                    {" "}
-                    This site can do the same with Google OAuth when the host enables it
-                    (“Connect Google”); until then use the{" "}
-                    <strong className="text-white">download / subscribe</strong> buttons here.
-                  </>}
-              </p>
-              <ul className="mt-3 list-disc space-y-2 pl-[1.05rem] marker:text-sky-400">
-                <li>
-                  <strong className="text-white">Often easiest on phones:</strong> tapping{" "}
-                  <strong className="text-white">Subscribe with Webcal</strong> on iPhone often
-                  opens Calendar with a confirmation prompt; alternatively open a
-                  downloaded <strong className="text-white">.ics</strong> from{" "}
-                  <strong className="text-white">Files / Downloads</strong> — iOS or Android
-                  usually offers to import without Google’s site.
-                </li>
-                <li>
-                  <strong className="text-white">iPhone subscribed calendar:</strong> the big
-                  green button uses a standard{" "}
-                  <code className="text-[11px] text-sky-200">webcal:</code> subscription URL, or paste
-                  the HTTPS feed at{" "}
-                  <strong className="text-white">Settings → Calendar → Accounts → …</strong>{" "}
-                  (<Link
-                    href={appleSubscribedCalendarHelp}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-medium text-orange-300 underline underline-offset-2 hover:text-orange-200"
-                  >
-                    Apple’s guide
-                  </Link>
-                  ).
-                </li>
-                <li>
-                  <strong className="text-white">Android + Google Calendar:</strong> there is no
-                  first-class parity most people find — realistically add the subscription once from
-                  a laptop (or tolerate the dusty web UI), then it syncs to the phone.
-                </li>
-              </ul>
-              <p className="mt-3 text-xs text-sky-200/90">
-                If you insist on browser-only Gmail: desktop-mode links —{" "}
-                <Link
-                  href={googleWebAddByUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-medium text-orange-300 underline underline-offset-2 hover:text-orange-200"
-                >
-                  subscribe by URL
-                </Link>
-                {" · "}
-                <Link
-                  href={googleWebImportExport}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-medium text-orange-300 underline underline-offset-2 hover:text-orange-200"
-                >
-                  import &amp; export
-                </Link>
-                .
-              </p>
-            </div>
-
-            {googleSteps}
-
-            <p className="mt-6 text-[11px] leading-snug text-zinc-600">
-              Stream coverage varies by country — double-check listings before lights
-              out.
-            </p>
-          </div>
         </aside>
       </div>
     </div>
