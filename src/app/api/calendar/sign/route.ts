@@ -6,6 +6,7 @@ import {
   resolveCalendarFeedSecret,
   signFeedPayload,
 } from "@/lib/calendar-token";
+import { querySessionsForFeed } from "@/lib/session-query";
 
 const ALLOWED: readonly Category[] = [
   Category.FORMULA,
@@ -58,8 +59,12 @@ export async function POST(req: Request) {
   }
 
   try {
+    const sessions = await querySessionsForFeed(payload);
     const token = signFeedPayload(payload);
-    return NextResponse.json({ token });
+    return NextResponse.json({
+      token,
+      sessionCount: sessions.length,
+    });
   } catch {
     return NextResponse.json(
       { error: "Could not sign calendar payload." },
