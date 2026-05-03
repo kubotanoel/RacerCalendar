@@ -7,12 +7,29 @@
   color-scheme: light dark;
   --foreground: #0c0a09;
   --background: #fffbf5;
+  --surface-elevated: #ffffff;
+  --surface-muted: #f5f4f1;
+  --border-muted: #e7e5e1;
+  --border-muted-strong: #d6d3cd;
+  --text-secondary: #57534e;
+  --text-muted: #78716c;
+  --shadow-card:
+    0 1px 2px rgb(120 113 108 / 0.06),
+    0 12px 28px rgb(251 146 60 / 0.08),
+    0 1px 0 rgb(255 255 255 / 0.6) inset;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground: #fafafa;
     --background: #09090b;
+    --surface-elevated: #18181b;
+    --surface-muted: #09090b;
+    --border-muted: #27272a;
+    --border-muted-strong: #3f3f46;
+    --text-secondary: #a1a1aa;
+    --text-muted: #71717a;
+    --shadow-card: 0 10px 40px rgb(0 0 0 / 0.45);
   }
 }
 
