@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 import { CATEGORIES, CategoryIcon } from "@/components/CategoryIcon";
 import type { UiCategory as Cat } from "@/components/CategoryIcon";
@@ -40,6 +41,7 @@ export function HomeClient() {
     subscribeHref: string | null;
   } | null>(null);
   const [copiedCalId, setCopiedCalId] = useState(false);
+  const [otherOptionsOpen, setOtherOptionsOpen] = useState(false);
 
   const toggle = useCallback((c: Cat) => {
     setPicked((prev) => {
@@ -323,15 +325,17 @@ export function HomeClient() {
   const countBanner =
     sessionCount === null ? null : sessionCount === 0 ?
       dbTotals?.sessionRows === 0 ?
-        <div className="rounded-xl border border-rose-500/35 bg-rose-950/40 px-4 py-3 text-sm text-rose-100">
-          <p className="font-medium text-white">Race data hasn’t been loaded.</p>
-          <p className="mt-2 text-xs leading-relaxed text-rose-100/95">
+        <div className="rounded-xl border border-rose-200 bg-gradient-to-br from-rose-50 to-orange-50/40 px-4 py-3 text-sm text-rose-900 shadow-sm dark:border-rose-500/35 dark:bg-rose-950/40 dark:from-transparent dark:to-transparent dark:text-rose-100 dark:shadow-none">
+          <p className="font-medium text-stone-900 dark:text-white">Race data hasn’t been loaded.</p>
+          <p className="mt-2 text-xs leading-relaxed text-rose-800/95 dark:text-rose-100/95">
             Migrations ran, but nobody ran the <strong>seed</strong> yet, so there are
             zero sessions in the database. Whoever maintains this site needs to run
             once against production (with the production{" "}
-            <code className="rounded bg-black/30 px-1 py-px text-[11px]">DATABASE_URL</code>
+            <code className="rounded bg-rose-200/55 px-1 py-px text-[11px] dark:bg-black/30">
+              DATABASE_URL
+            </code>
             ):{" "}
-            <code className="rounded bg-black/30 px-1 py-px text-[11px] whitespace-pre-wrap">
+            <code className="rounded bg-rose-200/55 px-1 py-px text-[11px] whitespace-pre-wrap dark:bg-black/30">
               npx prisma db seed
             </code>
             {" "}
@@ -340,66 +344,68 @@ export function HomeClient() {
           </p>
         </div>
       : dbTotals && dbTotals.upcomingRows === 0 && dbTotals.sessionRows > 0 ?
-        <div className="rounded-xl border border-amber-500/35 bg-amber-500/10 px-4 py-3 text-sm text-amber-100">
-          <p className="font-medium text-amber-50">
+        <div className="rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50/30 px-4 py-3 text-sm text-amber-950 shadow-sm dark:border-amber-500/35 dark:bg-amber-500/10 dark:from-transparent dark:to-transparent dark:text-amber-100 dark:shadow-none">
+          <p className="font-medium text-amber-900 dark:text-amber-50">
             Stored races exist, but they’re all in the past.
           </p>
-          <p className="mt-2 text-xs leading-relaxed text-amber-100/95">
+          <p className="mt-2 text-xs leading-relaxed text-amber-900/95 dark:text-amber-100/95">
             Re-run seed to generate future weekends, or add new schedules in the
             database.
           </p>
         </div>
       : dbTotals && dbTotals.upcomingRows > 0 ?
-        <div className="rounded-xl border border-amber-500/35 bg-amber-500/10 px-4 py-3 text-sm text-amber-100">
-          <p className="font-medium text-amber-50">Nothing matches these filters.</p>
-          <p className="mt-2 text-xs leading-relaxed text-amber-200/90">
+        <div className="rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50/30 px-4 py-3 text-sm text-amber-950 shadow-sm dark:border-amber-500/35 dark:bg-amber-500/10 dark:from-transparent dark:to-transparent dark:text-amber-100 dark:shadow-none">
+          <p className="font-medium text-amber-900 dark:text-amber-50">Nothing matches these filters.</p>
+          <p className="mt-2 text-xs leading-relaxed text-amber-950/95 dark:text-amber-200/90">
             There are upcoming races in the database, but none match what you chose.
             Try turning on <strong>Only free streams</strong>, pick different series,
             or clear series so “Everything” applies.
           </p>
         </div>
-      : <div className="rounded-xl border border-amber-500/35 bg-amber-500/10 px-4 py-3 text-sm text-amber-100">
-          <p className="font-medium text-amber-50">Nothing matches yet.</p>
-          <p className="mt-2 text-xs leading-relaxed text-amber-200/90">
+      : <div className="rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50/30 px-4 py-3 text-sm text-amber-950 shadow-sm dark:border-amber-500/35 dark:bg-amber-500/10 dark:from-transparent dark:to-transparent dark:text-amber-100 dark:shadow-none">
+          <p className="font-medium text-amber-900 dark:text-amber-50">Nothing matches yet.</p>
+          <p className="mt-2 text-xs leading-relaxed text-amber-950/95 dark:text-amber-200/90">
             Try relaxing filters first. If the calendar is still empty, your host may
             need to seed race data (
-            <code className="rounded bg-black/25 px-1 py-px text-[11px]">
+            <code className="rounded bg-amber-200/65 px-1 py-px text-[11px] dark:bg-black/25">
               npx prisma db seed
             </code>
             ).
           </p>
         </div>
-    : <div className="rounded-xl border border-emerald-500/30 bg-emerald-950/35 px-4 py-2.5 text-sm text-emerald-100">
-        <strong className="text-emerald-50">{sessionCount}</strong>
+    : <div className="rounded-xl border border-emerald-200 bg-gradient-to-br from-emerald-50 to-teal-50/35 px-4 py-2.5 text-sm text-emerald-950 shadow-sm dark:border-emerald-500/30 dark:bg-emerald-950/35 dark:from-transparent dark:to-transparent dark:text-emerald-100 dark:shadow-none">
+        <strong className="text-emerald-800 dark:text-emerald-50">{sessionCount}</strong>
         {" "}
         {sessionCount === 1 ? "race session" : "race sessions"}
         {" "}
-        in this feed — on Google Calendar, <strong className="text-emerald-50">Import</strong>{" "}
-        usually shows events right away; <strong className="text-emerald-50">From URL</strong>{" "}
+        in this feed — on Google Calendar,{" "}
+        <strong className="text-emerald-800 dark:text-emerald-50">Import</strong>{" "}
+        usually shows events right away;{" "}
+        <strong className="text-emerald-800 dark:text-emerald-50">From URL</strong>{" "}
         subscriptions can lag and search often doesn’t find them immediately.
       </div>;
 
   const googleSteps = (
-    <div className="mt-4 space-y-5 text-[13px] leading-snug text-zinc-300 lg:text-sm">
-      <div className="rounded-xl border border-emerald-500/25 bg-emerald-950/30 px-3 py-3 text-emerald-100/95">
-        <p className="font-semibold text-emerald-50">Recommended: import once</p>
-        <p className="mt-2 text-[12px] leading-relaxed lg:text-[13px]">
+    <div className="mt-4 space-y-5 text-[13px] leading-snug text-stone-700 dark:text-zinc-300 lg:text-sm">
+      <div className="rounded-xl border border-emerald-200 bg-gradient-to-br from-emerald-50/95 to-teal-50/50 px-3 py-3 shadow-sm dark:border-emerald-500/25 dark:from-transparent dark:to-transparent dark:bg-emerald-950/30 dark:shadow-none">
+        <p className="font-semibold text-emerald-900 dark:text-emerald-50">Recommended: import once</p>
+        <p className="mt-2 text-[12px] leading-relaxed lg:text-[13px] text-emerald-900/92 dark:text-emerald-100/95">
           Often the fastest way to see races in Google Calendar. You can subscribe by URL later if you prefer.
         </p>
         <ol className="mt-3 list-none space-y-2.5">
           <li className="flex gap-3">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-800/70 text-xs font-semibold text-white">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-xs font-semibold text-white shadow-sm dark:bg-emerald-800/70">
               A
             </span>
             <span className="pt-px">
-              In <strong className="text-emerald-50">Other options</strong> tap{" "}
-              <strong className="text-emerald-50">Download .ics</strong> (
-              same data as <strong className="text-emerald-50">Copy HTTPS feed</strong>
+              In <strong className="text-emerald-800 dark:text-emerald-50">Other options</strong> tap{" "}
+              <strong className="text-emerald-800 dark:text-emerald-50">Download .ics</strong> (
+              same data as <strong className="text-emerald-800 dark:text-emerald-50">Copy HTTPS feed</strong>
               ).
             </span>
           </li>
           <li className="flex gap-3">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-800/70 text-xs font-semibold text-white">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-xs font-semibold text-white shadow-sm dark:bg-emerald-800/70">
               B
             </span>
             <span className="pt-px flex flex-wrap items-center gap-x-2 gap-y-1">
@@ -408,17 +414,17 @@ export function HomeClient() {
                 href="https://calendar.google.com/"
                 target="_blank"
                 rel="noreferrer"
-                className="font-medium text-orange-400 underline underline-offset-2 hover:text-orange-300"
+                className="font-medium text-orange-600 underline underline-offset-2 hover:text-orange-700 dark:text-orange-400 dark:hover:text-orange-300"
               >
                 calendar.google.com
               </Link>{" "}
-              → <strong className="text-white">Settings</strong> (gear) →{" "}
-              <strong className="text-white">Import &amp; Export</strong> →{" "}
-              <strong className="text-white">Import</strong> and pick the file.
+              → <strong className="text-stone-900 dark:text-white">Settings</strong> (gear) →{" "}
+              <strong className="text-stone-900 dark:text-white">Import &amp; Export</strong> →{" "}
+              <strong className="text-stone-900 dark:text-white">Import</strong> and pick the file.
             </span>
           </li>
           <li className="flex gap-3">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-800/70 text-xs font-semibold text-white">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-xs font-semibold text-white shadow-sm dark:bg-emerald-800/70">
               C
             </span>
             <span className="pt-px">
@@ -427,7 +433,7 @@ export function HomeClient() {
                 href={googleImportHelp}
                 target="_blank"
                 rel="noreferrer"
-                className="font-medium text-orange-400 underline underline-offset-2 hover:text-orange-300"
+                className="font-medium text-orange-600 underline underline-offset-2 hover:text-orange-700 dark:text-orange-400 dark:hover:text-orange-300"
               >
                 import events
               </Link>{" "}
@@ -438,32 +444,36 @@ export function HomeClient() {
       </div>
 
       <div>
-        <p className="font-semibold text-zinc-200">Optional: subscribe by URL (auto-refresh)</p>
-        <p className="mt-2 text-[12px] leading-relaxed text-zinc-400 lg:text-[13px]">
+        <p className="font-semibold text-stone-800 dark:text-zinc-200">
+          Optional: subscribe by URL (auto-refresh)
+        </p>
+        <p className="mt-2 text-[12px] leading-relaxed text-stone-600 lg:text-[13px] dark:text-zinc-400">
           Google may take a long time to fetch the first update, and calendar search often won’t find those events until they appear.
         </p>
         <ol className="mt-3 list-none space-y-3">
           <li className="flex gap-3">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-700 text-xs font-semibold text-white">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-stone-700 text-xs font-semibold text-white shadow-sm dark:bg-zinc-700">
               1
             </span>
             <span className="pt-px">
-              In <strong className="text-white">Other options</strong> tap{" "}
-              <strong className="text-white">Copy HTTPS feed</strong>, then paste in Google Calendar.
+              In <strong className="text-stone-900 dark:text-white">Other options</strong> tap{" "}
+              <strong className="text-stone-900 dark:text-white">Copy HTTPS feed</strong>, then paste
+              in Google Calendar.
             </span>
           </li>
           <li className="flex gap-3">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-700 text-xs font-semibold text-white">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-stone-700 text-xs font-semibold text-white shadow-sm dark:bg-zinc-700">
               2
             </span>
             <span className="pt-px">
-              In Google Calendar, beside <strong className="text-white">Other calendars</strong>, click{" "}
-              <strong className="text-white">+</strong> →{" "}
-              <strong className="text-white">From URL</strong> and paste.
+              In Google Calendar, beside{" "}
+              <strong className="text-stone-900 dark:text-white">Other calendars</strong>, click{" "}
+              <strong className="text-stone-900 dark:text-white">+</strong> →{" "}
+              <strong className="text-stone-900 dark:text-white">From URL</strong> and paste.
             </span>
           </li>
           <li className="flex gap-3">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-700 text-xs font-semibold text-white">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-stone-700 text-xs font-semibold text-white shadow-sm dark:bg-zinc-700">
               3
             </span>
             <span className="pt-px">
@@ -472,7 +482,7 @@ export function HomeClient() {
                 href={googleSubscribeHelp}
                 target="_blank"
                 rel="noreferrer"
-                className="font-medium text-orange-400 underline underline-offset-2 hover:text-orange-300"
+                className="font-medium text-orange-600 underline underline-offset-2 hover:text-orange-700 dark:text-orange-400 dark:hover:text-orange-300"
               >
                 subscribe from URL
               </Link>{" "}
@@ -490,15 +500,15 @@ export function HomeClient() {
         {/* Hero + filters column — appears after calendar sidebar on phones so signup / ICS come first */}
         <div className="order-2 flex flex-col gap-8 lg:order-1 lg:col-span-6 xl:col-span-7 lg:gap-10">
           <header className="space-y-3 lg:space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-orange-400">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-orange-600 dark:text-orange-400">
               RacerCalendar
             </p>
-            <h1 className="max-w-xl text-pretty text-4xl font-semibold tracking-tight text-white sm:text-[2.65rem] sm:leading-[1.1] lg:max-w-2xl lg:text-5xl xl:text-[3.25rem] xl:leading-[1.08]">
+            <h1 className="max-w-xl text-pretty text-4xl font-semibold tracking-tight bg-gradient-to-r from-orange-900 via-orange-950 to-violet-900 bg-clip-text text-transparent sm:text-[2.65rem] sm:leading-[1.1] lg:max-w-2xl lg:text-5xl xl:text-[3.25rem] xl:leading-[1.08] dark:from-orange-100 dark:via-white dark:to-violet-200">
               Racing you can watch, straight in Google Calendar
             </h1>
-            <p className="max-w-xl text-pretty text-sm leading-relaxed text-zinc-400 lg:text-[15px] lg:leading-relaxed">
+            <p className="max-w-xl text-pretty text-sm leading-relaxed text-stone-600 lg:text-[15px] lg:leading-relaxed dark:text-zinc-400">
               Pick what you care about once. Prefer{" "}
-              <strong className="font-medium text-zinc-300">Add to Calendar</strong>{" "}
+              <strong className="font-medium text-stone-800 dark:text-zinc-200">Add to Calendar</strong>{" "}
               if this site supports it — otherwise follow the quick steps — no guessing
               which Google menu you need.
             </p>
@@ -507,11 +517,11 @@ export function HomeClient() {
           <section className="flex flex-col gap-4 lg:gap-5">
             <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 lg:justify-between lg:gap-4">
               <div className="flex flex-wrap items-baseline gap-x-2">
-                <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+                <span className="text-xs font-medium uppercase tracking-wide text-stone-600 dark:text-zinc-500">
                   Series
                 </span>
                 {allSports ?
-                  <span className="text-xs text-zinc-500">Everything</span>
+                  <span className="text-xs text-stone-500 dark:text-zinc-500">Everything</span>
                 : null}
               </div>
             </div>
@@ -528,8 +538,8 @@ export function HomeClient() {
                     onClick={() => toggle(c)}
                     className={`flex flex-col items-center gap-2 rounded-2xl border px-3 py-3 transition sm:flex-1 sm:basis-[calc(16.66%-12px)] sm:min-w-[5.75rem] sm:py-4 ${
                       on
-                        ? "border-orange-500/70 bg-orange-600/20 text-orange-50 ring-2 ring-orange-500/35"
-                        : "border-zinc-800 bg-zinc-900/55 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200 lg:border-zinc-800/90"
+                        ? "border-orange-500/90 bg-gradient-to-br from-orange-400/95 to-orange-600/98 text-orange-950 shadow-lg shadow-orange-600/35 ring-2 ring-orange-400/85 dark:border-orange-400/85 dark:bg-gradient-to-br dark:from-orange-600/85 dark:to-orange-950/92 dark:text-orange-50 dark:ring-orange-600/85"
+                        : "border-stone-200/90 bg-white/72 text-stone-600 shadow-inner shadow-orange-950/10 hover:border-orange-300/95 hover:bg-white/95 hover:text-stone-900 lg:border lg:border-transparent dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400 dark:shadow-inner dark:shadow-transparent dark:hover:border-orange-950/97 dark:hover:text-zinc-200"
                     }`}
                   >
                     <CategoryIcon category={c} />
@@ -547,13 +557,13 @@ export function HomeClient() {
               aria-checked={freeOnly}
               title="Sessions need at least one free stream in our data."
               onClick={() => setFreeOnly(!freeOnly)}
-              className="flex items-center justify-between gap-6 rounded-2xl border border-zinc-800 bg-zinc-900/40 px-5 py-3.5 text-left transition hover:border-zinc-600 lg:max-w-md"
+              className="flex items-center justify-between gap-6 rounded-2xl border border-stone-200/90 bg-white/92 px-5 py-3.5 text-left shadow-sm shadow-orange-950/15 transition hover:border-orange-400/58 hover:bg-white lg:max-w-md dark:border-zinc-800 dark:bg-gradient-to-br dark:from-zinc-950 dark:to-zinc-900 dark:shadow-none dark:hover:border-zinc-600"
             >
               <div>
-                <p className="text-sm font-medium text-zinc-100">
+                <p className="text-sm font-medium text-stone-900 dark:text-zinc-100">
                   Only show free streams
                 </p>
-                <p className="mt-0.5 text-[11px] text-zinc-500">
+                <p className="mt-0.5 text-[11px] text-stone-600 dark:text-zinc-500">
                   Hides races we only know as paid-only.
                 </p>
               </div>
@@ -571,7 +581,7 @@ export function HomeClient() {
             </button>
 
             {signErr ?
-              <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-xs text-red-200">
+              <p className="rounded-xl border border-red-200 bg-red-50/95 px-4 py-3 text-xs text-red-950 dark:border-red-500/35 dark:bg-red-500/15 dark:text-red-50">
                 {signErr}
               </p>
             : null}
@@ -584,13 +594,13 @@ export function HomeClient() {
         <aside className="order-1 flex flex-col gap-5 lg:order-2 lg:col-span-6 xl:col-span-5 lg:sticky lg:top-[5.25rem]">
           <div
             id="subscribe-by-url"
-            className="overflow-hidden rounded-3xl border-2 border-zinc-600/65 bg-gradient-to-b from-zinc-900 via-zinc-950 to-black p-5 shadow-xl shadow-black/40 lg:p-7"
+            className="overflow-hidden rounded-3xl border-2 border-stone-300/94 bg-white/93 p-5 shadow-xl shadow-orange-950/21 backdrop-blur-sm dark:border-zinc-600/93 dark:bg-gradient-to-b dark:from-zinc-900 dark:via-zinc-950 dark:to-black dark:shadow-black/71 lg:p-8"
           >
             <header className="space-y-1.5">
-              <h2 className="text-lg font-semibold tracking-tight text-white sm:text-xl">
+              <h2 className="text-lg font-semibold tracking-tight text-stone-900 sm:text-xl dark:text-white">
                 Get races on your calendar
               </h2>
-              <p className="text-xs leading-relaxed text-zinc-500 sm:text-[13px]">
+              <p className="text-xs leading-relaxed text-stone-600 sm:text-[13px] dark:text-zinc-500">
                 One shared Google calendar for everyone, or a personal link that follows your
                 filters below.
               </p>
@@ -609,11 +619,11 @@ export function HomeClient() {
                   <span className="drop-shadow-sm">Add to Google Calendar</span>
                 </a>
               : publicGoogleCal?.credentialsConfigured ?
-                <div className="flex min-h-[3.25rem] flex-col justify-center rounded-2xl border border-dashed border-violet-500/35 bg-violet-950/25 px-4 py-3 text-center">
-                  <span className="text-sm font-semibold text-violet-200">
+                <div className="flex min-h-[3.25rem] flex-col justify-center rounded-2xl border border-dashed border-violet-300/93 bg-gradient-to-br from-violet-50 via-white to-indigo-50/65 px-4 py-3 text-center shadow-sm shadow-violet-950/10 dark:border-violet-500/35 dark:bg-violet-950/25 dark:from-transparent dark:via-transparent dark:to-transparent dark:shadow-none">
+                  <span className="text-sm font-semibold text-violet-900 dark:text-violet-200">
                     Add to Google Calendar
                   </span>
-                  <span className="mt-1 text-[11px] text-violet-300/85">
+                  <span className="mt-1 text-[11px] text-violet-800/93 dark:text-violet-300/85">
                     First sync pending — host runs service-sync once.
                   </span>
                 </div>
@@ -628,7 +638,7 @@ export function HomeClient() {
                   <span>Add to Calendar</span>
                 </a>
               : <span
-                  className={`inline-flex min-h-[3.25rem] items-center justify-center rounded-2xl border border-zinc-600 bg-zinc-800/50 px-5 py-3.5 text-center text-[15px] font-semibold text-zinc-500 ${
+                  className={`inline-flex min-h-[3.25rem] items-center justify-center rounded-2xl border border-stone-300 bg-stone-200/90 px-5 py-3.5 text-center text-[15px] font-semibold text-stone-500 shadow-inner shadow-white/80 dark:border-zinc-600 dark:bg-zinc-800/50 dark:text-zinc-500 dark:shadow-none ${
                     signErr ? "opacity-35" : linkLoading ? "opacity-55" : "opacity-40"
                   }`}
                   aria-disabled="true"
@@ -638,195 +648,217 @@ export function HomeClient() {
               }
             </div>
 
-            <p className="mt-3 text-center text-[11px] leading-snug text-zinc-500 sm:text-left">
-              <strong className="font-medium text-zinc-400">Google:</strong> same full schedule for
+            <p className="mt-4 text-center text-[11px] leading-snug text-stone-600 dark:text-zinc-500 sm:text-left">
+              <strong className="font-medium text-stone-800 dark:text-zinc-400">Google:</strong> same full schedule for
               all subscribers.&nbsp;
-              <strong className="font-medium text-zinc-400">Calendar app:</strong> respects your
+              <strong className="font-medium text-stone-800 dark:text-zinc-400">Calendar app:</strong> respects your
               series + free‑stream filters (
-              <span className="text-zinc-500">{linkLoading ? "loading…" : "Webcal subscription"}</span>
+              <span className="text-stone-600 dark:text-zinc-500">{linkLoading ? "loading…" : "Webcal subscription"}</span>
               ).
             </p>
 
-            <div className="mt-7 border-t border-zinc-700/90 pt-5">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-600">
-                Other options
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <button
-                  type="button"
-                  disabled={!feedUrl || linkLoading || !!signErr || downloadBusy}
-                  onClick={() => void downloadIcsFile()}
-                  className="rounded-xl border border-zinc-600 bg-zinc-800/80 px-3.5 py-2 text-xs font-medium text-zinc-100 hover:bg-zinc-700 disabled:pointer-events-none disabled:opacity-35 sm:text-[13px]"
-                >
-                  {downloadBusy ? "Downloading…" : "Download .ics"}
-                </button>
-                <button
-                  type="button"
-                  disabled={!feedUrl || linkLoading || !!signErr}
-                  onClick={() => void copyUrl()}
-                  className="rounded-xl border border-zinc-600 bg-zinc-800/80 px-3.5 py-2 text-xs font-medium text-zinc-100 hover:bg-zinc-700 disabled:pointer-events-none disabled:opacity-35 sm:text-[13px]"
-                >
-                  {copied ? "Copied" : "Copy HTTPS feed"}
-                </button>
-                {publicGoogleCal?.calendarId ?
+            <button
+              type="button"
+              aria-expanded={otherOptionsOpen}
+              onClick={() => setOtherOptionsOpen((o) => !o)}
+              className="mt-7 flex w-full items-center justify-between gap-3 rounded-2xl border border-stone-300/95 bg-gradient-to-r from-white/96 to-orange-50/97 px-4 py-3.5 text-left shadow-sm shadow-orange-950/25 transition hover:border-orange-400/97 hover:from-white hover:to-orange-50/99 dark:border-zinc-700 dark:from-zinc-950/96 dark:to-black/94 dark:shadow-none dark:hover:border-zinc-600"
+            >
+              <span className="flex min-w-0 items-center gap-2.5">
+                <ChevronDown
+                  className={`size-5 shrink-0 text-orange-600 transition-transform duration-300 dark:text-orange-400 ${otherOptionsOpen ? "-rotate-180" : ""}`}
+                  strokeWidth={2.25}
+                  aria-hidden
+                />
+                <span className="min-w-0">
+                  <span className="block text-sm font-semibold text-stone-900 dark:text-zinc-100">
+                    Other options
+                  </span>
+                  <span className="mt-0.5 block text-[11px] font-normal text-stone-600 dark:text-zinc-500">
+                    Download, copy links, calendar ID, device help
+                  </span>
+                </span>
+              </span>
+            </button>
+
+            {otherOptionsOpen ?
+              <div className="mt-3 space-y-4 rounded-2xl border border-stone-200/97 bg-gradient-to-b from-white/98 to-stone-50/98 p-4 shadow-inner shadow-orange-950/18 dark:border-zinc-800 dark:from-zinc-950/97 dark:to-black/98 dark:shadow-none">
+                <div className="flex flex-wrap gap-2">
                   <button
                     type="button"
-                    onClick={() => void copyPublicCalendarId()}
-                    className="rounded-xl border border-zinc-600 bg-zinc-800/80 px-3.5 py-2 text-xs font-medium text-zinc-100 hover:bg-zinc-700 sm:text-[13px]"
+                    disabled={!feedUrl || linkLoading || !!signErr || downloadBusy}
+                    onClick={() => void downloadIcsFile()}
+                    className="rounded-xl border border-stone-300 bg-white px-3.5 py-2 text-xs font-medium text-stone-800 shadow-sm hover:bg-stone-50 disabled:pointer-events-none disabled:opacity-35 sm:text-[13px] dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:bg-zinc-800"
                   >
-                    {copiedCalId ? "Copied calendar ID" : "Copy calendar ID"}
+                    {downloadBusy ? "Downloading…" : "Download .ics"}
                   </button>
-                : null}
-              </div>
-
-              <p className="mt-3 font-mono text-[10px] leading-relaxed text-zinc-500 sm:text-[11px]">
-                {feedUrl ?
-                  <span className="break-all">{feedUrl}</span>
-                : signErr ?
-                  "Personal feed unavailable — fix error above."
-                : linkLoading ?
-                  "Personal feed signing…"
-                : "—"}
-              </p>
-
-              {!googleReady ?
-                <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-[11px]">
-                  <Link
-                    href={googleImportHelp}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-zinc-600 underline-offset-4 hover:text-zinc-400 hover:underline"
+                  <button
+                    type="button"
+                    disabled={!feedUrl || linkLoading || !!signErr}
+                    onClick={() => void copyUrl()}
+                    className="rounded-xl border border-stone-300 bg-white px-3.5 py-2 text-xs font-medium text-stone-800 shadow-sm hover:bg-stone-50 disabled:pointer-events-none disabled:opacity-35 sm:text-[13px] dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:bg-zinc-800"
                   >
-                    Google: Import
-                  </Link>
-                  <Link
-                    href={googleSubscribeHelp}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-zinc-600 underline-offset-4 hover:text-zinc-400 hover:underline"
-                  >
-                    Google: Subscribe URL
-                  </Link>
-                  <Link
-                    href={appleSubscribedCalendarHelp}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-zinc-600 underline-offset-4 hover:text-zinc-400 hover:underline"
-                  >
-                    Apple: Subscribed calendars
-                  </Link>
-                  <Link
-                    href={googleWebAddByUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-zinc-600 underline-offset-4 hover:text-zinc-400 hover:underline"
-                  >
-                    Gmail: Web add-by-URL
-                  </Link>
+                    {copied ? "Copied" : "Copy HTTPS feed"}
+                  </button>
+                  {publicGoogleCal?.calendarId ?
+                    <button
+                      type="button"
+                      onClick={() => void copyPublicCalendarId()}
+                      className="rounded-xl border border-stone-300 bg-white px-3.5 py-2 text-xs font-medium text-stone-800 shadow-sm hover:bg-stone-50 sm:text-[13px] dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:bg-zinc-800"
+                    >
+                      {copiedCalId ? "Copied calendar ID" : "Copy calendar ID"}
+                    </button>
+                  : null}
                 </div>
-              : null}
 
-              <details className="group mt-5 rounded-xl border border-zinc-700/70 bg-black/25">
-                <summary className="cursor-pointer select-none px-3 py-3 text-xs font-medium text-zinc-400 marker:text-zinc-500 hover:text-zinc-200">
-                  More help · mobile Gmail · Apple · steps
-                  <span className="mt-1 block font-normal text-[11px] text-zinc-600 group-open:hidden">
-                    Tap if Webcal/Google didn&apos;t cooperate.
-                  </span>
-                </summary>
-                <div className="space-y-4 border-t border-zinc-800 px-3 py-4 text-[12px] text-zinc-400">
-                  <div className="rounded-lg border border-sky-500/25 bg-sky-950/20 px-3 py-3 leading-relaxed">
-                    <p className="font-medium text-sky-100">
-                      Phones &amp; Google&apos;s cramped UI?
-                    </p>
-                    <p className="mt-2 text-sky-100/88">
-                      <strong className="text-white">Add to Calendar</strong> opens your app;{" "}
-                      <strong className="text-white">Download .ics</strong> from Files often works too.
-                      {googleReady ?
-                        <>
-                          {" "}
-                          <button
-                            type="button"
-                            className="-mx-px font-medium text-orange-300 underline decoration-orange-400/40 underline-offset-2 hover:text-orange-200"
-                            onClick={() =>
-                              document
-                                .getElementById("easiest-google")
-                                ?.scrollIntoView({ behavior: "smooth", block: "start" })
-                            }
-                          >
-                            Connect Google
-                          </button>{" "}
-                          writes into your Gmail calendar from our server (
-                          <button
-                            type="button"
-                            className="-mx-px font-medium text-orange-300 underline decoration-orange-400/40 underline-offset-2 hover:text-orange-200"
-                            onClick={() =>
-                              document
-                                .getElementById("easiest-google")
-                                ?.scrollIntoView({ behavior: "smooth", block: "start" })
-                            }
-                          >
-                            below
-                          </button>
-                          ).
-                        </>
-                      : null}{" "}
-                      <Link
-                        href={googleWebImportExport}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-orange-300 underline underline-offset-2 hover:text-orange-200"
-                      >
-                        Gmail import &amp; export
-                      </Link>
-                      {" · "}
-                      <Link
-                        href="https://formulacalendar.com/subscribe/"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-orange-300 underline underline-offset-2 hover:text-orange-200"
-                      >
-                        Formula&nbsp;Calendar
-                      </Link>
-                      .
-                    </p>
+                <p className="font-mono text-[10px] leading-relaxed text-stone-600 sm:text-[11px] dark:text-zinc-500">
+                  {feedUrl ?
+                    <span className="break-all">{feedUrl}</span>
+                  : signErr ?
+                    "Personal feed unavailable — fix error above."
+                  : linkLoading ?
+                    "Personal feed signing…"
+                  : "—"}
+                </p>
+
+                {!googleReady ?
+                  <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px]">
+                    <Link
+                      href={googleImportHelp}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-stone-600 underline-offset-4 hover:text-stone-900 hover:underline dark:text-zinc-500 dark:hover:text-zinc-300"
+                    >
+                      Google: Import
+                    </Link>
+                    <Link
+                      href={googleSubscribeHelp}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-stone-600 underline-offset-4 hover:text-stone-900 hover:underline dark:text-zinc-500 dark:hover:text-zinc-300"
+                    >
+                      Google: Subscribe URL
+                    </Link>
+                    <Link
+                      href={appleSubscribedCalendarHelp}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-stone-600 underline-offset-4 hover:text-stone-900 hover:underline dark:text-zinc-500 dark:hover:text-zinc-300"
+                    >
+                      Apple: Subscribed calendars
+                    </Link>
+                    <Link
+                      href={googleWebAddByUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-stone-600 underline-offset-4 hover:text-stone-900 hover:underline dark:text-zinc-500 dark:hover:text-zinc-300"
+                    >
+                      Gmail: Web add-by-URL
+                    </Link>
                   </div>
-                  {googleSteps}
-                </div>
-              </details>
+                : null}
 
-              <p className="mt-5 text-[11px] leading-snug text-zinc-600">
-                Stream coverage varies by country — verify before lights&nbsp;out.
-              </p>
-            </div>
+                <details className="group rounded-xl border border-stone-200 bg-white/98 dark:border-zinc-800 dark:bg-zinc-950/98">
+                  <summary className="cursor-pointer select-none list-none px-3 py-3 text-xs font-medium text-stone-700 marker:content-none hover:text-stone-950 dark:text-zinc-400 dark:hover:text-zinc-200 [&::-webkit-details-marker]:hidden">
+                    More help · mobile Gmail · Apple · steps
+                    <span className="mt-1 block font-normal text-[11px] text-stone-600 group-open:hidden dark:text-zinc-500">
+                      Tap if Webcal/Google didn&apos;t cooperate.
+                    </span>
+                  </summary>
+                  <div className="space-y-4 border-t border-stone-200 px-3 py-4 text-[12px] text-stone-700 dark:border-zinc-800 dark:text-zinc-400">
+                    <div className="rounded-lg border border-sky-200 bg-gradient-to-br from-sky-50 to-indigo-50/45 px-3 py-3 leading-relaxed dark:border-sky-500/25 dark:from-sky-950/40 dark:to-indigo-950/22">
+                      <p className="font-medium text-sky-900 dark:text-sky-100">
+                        Phones &amp; Google&apos;s cramped UI?
+                      </p>
+                      <p className="mt-2 text-sky-900/94 dark:text-sky-100/88">
+                        <strong className="text-stone-950 dark:text-white">Add to Calendar</strong> opens your app;{" "}
+                        <strong className="text-stone-950 dark:text-white">Download .ics</strong> from Files often works too.
+                        {googleReady ?
+                          <>
+                            {" "}
+                            <button
+                              type="button"
+                              className="-mx-px font-medium text-orange-600 underline decoration-orange-400/40 underline-offset-2 hover:text-orange-800 dark:text-orange-300 dark:hover:text-orange-200"
+                              onClick={() =>
+                                document
+                                  .getElementById("easiest-google")
+                                  ?.scrollIntoView({ behavior: "smooth", block: "start" })
+                              }
+                            >
+                              Connect Google
+                            </button>{" "}
+                            writes into your Gmail calendar from our server (
+                            <button
+                              type="button"
+                              className="-mx-px font-medium text-orange-600 underline decoration-orange-400/40 underline-offset-2 hover:text-orange-800 dark:text-orange-300 dark:hover:text-orange-200"
+                              onClick={() =>
+                                document
+                                  .getElementById("easiest-google")
+                                  ?.scrollIntoView({ behavior: "smooth", block: "start" })
+                              }
+                            >
+                              below
+                            </button>
+                            ).
+                          </>
+                        : null}{" "}
+                        <Link
+                          href={googleWebImportExport}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-orange-600 underline underline-offset-2 hover:text-orange-800 dark:text-orange-300 dark:hover:text-orange-200"
+                        >
+                          Gmail import &amp; export
+                        </Link>
+                        {" · "}
+                        <Link
+                          href="https://formulacalendar.com/subscribe/"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-orange-600 underline underline-offset-2 hover:text-orange-800 dark:text-orange-300 dark:hover:text-orange-200"
+                        >
+                          Formula&nbsp;Calendar
+                        </Link>
+                        .
+                      </p>
+                    </div>
+                    {googleSteps}
+                  </div>
+                </details>
+
+                <p className="text-[11px] leading-snug text-stone-600 dark:text-zinc-600">
+                  Stream coverage varies by country — verify before lights&nbsp;out.
+                </p>
+              </div>
+            : null}
           </div>
 
           {googleReady ?
             <div
               id="easiest-google"
-              className="overflow-hidden rounded-2xl border border-orange-500/40 bg-gradient-to-br from-orange-950/85 via-zinc-950 to-zinc-950 p-5 shadow-[0_0_32px_-12px_rgba(234,88,12,0.4)]"
+              className="overflow-hidden rounded-2xl border border-orange-400/55 bg-gradient-to-br from-orange-50/96 via-white to-amber-50/94 p-5 shadow-[0_22px_50px_-32px_rgba(234,88,12,0.55)] ring-1 ring-orange-950/10 dark:border-orange-500/40 dark:bg-gradient-to-br dark:from-orange-950/85 dark:via-zinc-950 dark:to-zinc-950 dark:shadow-[0_0_32px_-12px_rgba(234,88,12,0.4)] dark:ring-0"
             >
               <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-md bg-orange-500 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-orange-950">
+                <span className="rounded-md bg-orange-600 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white shadow-sm dark:bg-orange-500 dark:text-orange-950 dark:shadow-none">
                   Optional
                 </span>
-                <h2 className="text-[15px] font-semibold text-white">
+                <h2 className="text-[15px] font-semibold text-stone-900 dark:text-white">
                   Signed-in Google Calendar
                 </h2>
               </div>
-              <p className="mt-2 text-xs leading-relaxed text-orange-50/82">
-                We create / refresh <strong className="text-white">RacerCalendar</strong> in{" "}
+              <p className="mt-2 text-xs leading-relaxed text-stone-700 dark:text-orange-50/82">
+                We create / refresh <strong className="text-stone-950 dark:text-white">RacerCalendar</strong> in{" "}
                 <em>your</em> Gmail account (
-                <strong className="text-white">respects filters</strong> via Push sync).
+                <strong className="text-stone-950 dark:text-white">respects filters</strong> via Push sync).
               </p>
               {sessionEmail ?
-                <p className="mt-2 text-[11px] text-orange-100/90">{sessionEmail}</p>
+                <p className="mt-2 text-[11px] text-stone-600 dark:text-orange-100/90">{sessionEmail}</p>
               : null}
               <div className="mt-4 flex flex-wrap gap-2">
                 <button
                   type="button"
                   disabled={!connectHref}
                   onClick={startGoogleOAuth}
-                  className="rounded-xl bg-orange-500 px-4 py-2.5 text-sm font-semibold text-orange-950 shadow-md shadow-orange-900/35 transition hover:bg-orange-400 disabled:pointer-events-none disabled:opacity-40"
+                  className="rounded-xl bg-gradient-to-r from-orange-600 to-orange-500 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-orange-900/35 transition hover:from-orange-500 hover:to-orange-400 disabled:pointer-events-none disabled:opacity-40 dark:from-orange-500 dark:to-orange-500 dark:text-orange-950 dark:hover:from-orange-400 dark:hover:to-orange-400 dark:shadow-orange-950/55"
                 >
                   Connect Google
                 </button>
@@ -834,17 +866,17 @@ export function HomeClient() {
                   type="button"
                   disabled={syncBusy || !token}
                   onClick={pushSyncManual}
-                  className="rounded-xl border border-orange-400/50 bg-transparent px-3 py-2.5 text-sm font-medium text-orange-50 hover:bg-orange-500/12 disabled:pointer-events-none disabled:opacity-40"
+                  className="rounded-xl border border-orange-600/35 bg-orange-600/10 px-3 py-2.5 text-sm font-medium text-stone-900 hover:bg-orange-600/14 disabled:pointer-events-none disabled:opacity-40 dark:border-orange-400/50 dark:bg-transparent dark:text-orange-50 dark:hover:bg-orange-500/12"
                 >
                   {syncBusy ? "Syncing…" : "Push / refresh"}
                 </button>
               </div>
               {syncMsg ?
-                <p className="mt-3 text-[11px] text-orange-50/90">{syncMsg}</p>
+                <p className="mt-3 text-[11px] text-stone-600 dark:text-orange-50/90">{syncMsg}</p>
               : null}
               <button
                 type="button"
-                className="mt-3 block text-[11px] font-medium text-orange-50/60 underline underline-offset-2 hover:text-orange-50"
+                className="mt-3 block text-[11px] font-medium text-stone-600/85 underline underline-offset-2 hover:text-stone-900 dark:text-orange-50/60 dark:hover:text-orange-50"
                 onClick={() =>
                   document
                     .getElementById("subscribe-by-url")
