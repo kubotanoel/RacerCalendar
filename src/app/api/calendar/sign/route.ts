@@ -19,6 +19,66 @@ const ALLOWED: readonly Category[] = [
 
 const ALLOWED_SET = new Set<string>(ALLOWED);
 
+export const runtime = "nodejs";
+
+function signFailureResponse(cause: unknown) {
+  console.error("[api/calendar/sign]", cause);
+
+  const msg =
+    cause instanceof Error
+      ? `${cause.message}\n${cause.stack ?? ""}`
+      : typeof cause === "string"
+        ? cause
+        : `Unknown: ${String(cause)}`;
+
+  const m = msg.toLowerCase();
+  const prismaCode =
+    typeof cause === "object" &&
+    cause !== null &&
+    "code" in cause &&
+    typeof (cause as { code: unknown }).code === "string"
+      ? (cause as { code: string }).code
+      : "";
+
+  const looksDb =
+    prismaCode.startsWith("P") ||
+    m.includes("prisma") ||
+    m.includes("database") ||
+    m.includes("sql") ||
+    m.includes("connect econnrefused") ||
+    m.includes("can't reach database") ||
+    m.includes("does not exist") ||
+    m.includes("enoent") ||
+    m.includes("sqlite");
+
+  if (looksDb) {
+    return NextResponse.json(
+      {
+        error:
+          "We couldn’t read the race database. If you run this on Vercel: set DATABASE_URL to Postgres (or another persistent DB), run “prisma migrate deploy”, then “prisma db seed” once. SQLite on the default file path usually fails in production.",
+        code: "database_unavailable",
+      },
+      { status: 503 },
+    );
+  }
+
+  if (m.includes("calendar_feed_secret") || m.includes("not configured")) {
+    return NextResponse.json(
+      { error: calendarFeedMisconfigurationMessage(), code: "secret" },
+      { status: 503 },
+    );
+  }
+
+  return NextResponse.json(
+    {
+      error:
+        "Couldn’t create your calendar link. Refresh the page; if it keeps happening, check host logs (Vercel → Logs).",
+      code: "unknown",
+    },
+    { status: 500 },
+  );
+}
+
 export async function POST(req: Request) {
   let raw: unknown;
   try {
@@ -65,10 +125,7 @@ export async function POST(req: Request) {
       token,
       sessionCount: sessions.length,
     });
-  } catch {
-    return NextResponse.json(
-      { error: "Could not sign calendar payload." },
-      { status: 500 },
-    );
+  } catch (cause) {
+    return signFailureResponse(cause);
   }
 }

@@ -28,6 +28,7 @@ export function HomeClient() {
   const [syncMsg, setSyncMsg] = useState<string>("");
   const [syncBusy, setSyncBusy] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [linkLoading, setLinkLoading] = useState(true);
 
   const toggle = useCallback((c: Cat) => {
     setPicked((prev) => {
@@ -39,8 +40,12 @@ export function HomeClient() {
   }, []);
 
   useEffect(() => {
-    let alive = true;
+    let stale = false;
     const run = async () => {
+      await Promise.resolve();
+      if (stale) return;
+      setLinkLoading(true);
+      setSignErr("");
       try {
         const res = await fetch("/api/calendar/sign", {
           method: "POST",
@@ -51,27 +56,30 @@ export function HomeClient() {
           }),
         });
         const data = await res.json();
-        if (!alive) return;
+        if (stale) return;
         if (!res.ok) {
+          setToken("");
           setSessionCount(null);
           setSignErr(typeof data?.error === "string" ? data.error : "Sign failed");
           return;
         }
         setSignErr("");
-        setToken(data.token as string);
+        setToken(typeof data.token === "string" ? data.token : "");
         setSessionCount(
           typeof data.sessionCount === "number" ? data.sessionCount : null,
         );
       } catch {
-        if (alive) {
-          setSignErr("Could not mint calendar link.");
-          setSessionCount(null);
-        }
+        if (stale) return;
+        setToken("");
+        setSessionCount(null);
+        setSignErr("Network error — check your connection and try again.");
+      } finally {
+        if (!stale) setLinkLoading(false);
       }
     };
     void run();
     return () => {
-      alive = false;
+      stale = true;
     };
   }, [picked, freeOnly]);
 
@@ -475,7 +483,7 @@ export function HomeClient() {
               </div>
               <button
                 type="button"
-                disabled={!feedUrl}
+                disabled={!feedUrl || linkLoading || !!signErr}
                 onClick={() => void copyUrl()}
                 className="shrink-0 rounded-xl bg-white px-4 py-2 text-sm font-semibold text-zinc-900 hover:bg-zinc-100 disabled:pointer-events-none disabled:opacity-35"
               >
@@ -484,7 +492,13 @@ export function HomeClient() {
             </div>
 
             <div className="mt-3 break-all rounded-xl border border-dashed border-zinc-700 bg-black/35 px-3 py-2.5 font-mono text-[10px] leading-relaxed text-zinc-400 sm:text-[11px] lg:text-[12px]">
-              {feedUrl || "Generating your link…"}
+              {feedUrl ?
+                feedUrl
+              : signErr ?
+                "— Link could not be created (see notice above)."
+              : linkLoading ?
+                "Building your calendar link…"
+              : "—"}
             </div>
 
             {googleSteps}

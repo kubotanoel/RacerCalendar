@@ -5,6 +5,8 @@ import { upsertSessionsToCalendar } from "@/lib/google/calendar-sync";
 import { parseRcSession, SESSION_COOKIE } from "@/lib/rc-session";
 import { querySessionsForFeed } from "@/lib/session-query";
 
+export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   const cookie = parseRcSession(
     (await cookiesFromRequest(req)).get(SESSION_COOKIE),

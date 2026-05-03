@@ -6,6 +6,8 @@ import { querySessionsForFeed } from "@/lib/session-query";
 
 type RouteContext = { params: Promise<{ token: string }> };
 
+export const runtime = "nodejs";
+
 export async function GET(_req: Request, context: RouteContext) {
   const { token: raw } = await context.params;
   const token = decodeURIComponent(raw);
