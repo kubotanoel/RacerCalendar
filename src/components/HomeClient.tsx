@@ -29,6 +29,10 @@ export function HomeClient() {
   const [syncBusy, setSyncBusy] = useState(false);
   const [copied, setCopied] = useState(false);
   const [linkLoading, setLinkLoading] = useState(true);
+  const [dbTotals, setDbTotals] = useState<{
+    sessionRows: number;
+    upcomingRows: number;
+  } | null>(null);
 
   const toggle = useCallback((c: Cat) => {
     setPicked((prev) => {
@@ -60,6 +64,7 @@ export function HomeClient() {
         if (!res.ok) {
           setToken("");
           setSessionCount(null);
+          setDbTotals(null);
           setSignErr(typeof data?.error === "string" ? data.error : "Sign failed");
           return;
         }
@@ -68,10 +73,20 @@ export function HomeClient() {
         setSessionCount(
           typeof data.sessionCount === "number" ? data.sessionCount : null,
         );
+        setDbTotals(
+          typeof data.dbSessionTotal === "number" &&
+            typeof data.dbUpcomingTotal === "number" ?
+            {
+              sessionRows: data.dbSessionTotal,
+              upcomingRows: data.dbUpcomingTotal,
+            }
+          : null,
+        );
       } catch {
         if (stale) return;
         setToken("");
         setSessionCount(null);
+        setDbTotals(null);
         setSignErr("Network error — check your connection and try again.");
       } finally {
         if (!stale) setLinkLoading(false);
@@ -230,21 +245,60 @@ export function HomeClient() {
 
   const countBanner =
     sessionCount === null ? null : sessionCount === 0 ?
-      <div className="rounded-xl border border-amber-500/35 bg-amber-500/10 px-4 py-3 text-sm text-amber-100">
-        <p className="font-medium text-amber-50">Nothing matches yet.</p>
-        <p className="mt-1 text-xs leading-relaxed text-amber-200/90">
-          Turn off <strong>Only free streams</strong>, or leave each series unchecked
-          to include everything. If it still stays empty here, Google won’t either —
-          race data might not be live on this deployment yet (try again later), or{" "}
-          Google can take hours to refresh a new subscribe link.
-        </p>
-      </div>
+      dbTotals?.sessionRows === 0 ?
+        <div className="rounded-xl border border-rose-500/35 bg-rose-950/40 px-4 py-3 text-sm text-rose-100">
+          <p className="font-medium text-white">Race data hasn’t been loaded.</p>
+          <p className="mt-2 text-xs leading-relaxed text-rose-100/95">
+            Migrations ran, but nobody ran the <strong>seed</strong> yet, so there are
+            zero sessions in the database. Whoever maintains this site needs to run
+            once against production (with the production{" "}
+            <code className="rounded bg-black/30 px-1 py-px text-[11px]">DATABASE_URL</code>
+            ):{" "}
+            <code className="rounded bg-black/30 px-1 py-px text-[11px] whitespace-pre-wrap">
+              npx prisma db seed
+            </code>
+            {" "}
+            then refresh this page. Until then, Calendar will stay empty no matter how
+            you set filters.
+          </p>
+        </div>
+      : dbTotals && dbTotals.upcomingRows === 0 && dbTotals.sessionRows > 0 ?
+        <div className="rounded-xl border border-amber-500/35 bg-amber-500/10 px-4 py-3 text-sm text-amber-100">
+          <p className="font-medium text-amber-50">
+            Stored races exist, but they’re all in the past.
+          </p>
+          <p className="mt-2 text-xs leading-relaxed text-amber-100/95">
+            Re-run seed to generate future weekends, or add new schedules in the
+            database.
+          </p>
+        </div>
+      : dbTotals && dbTotals.upcomingRows > 0 ?
+        <div className="rounded-xl border border-amber-500/35 bg-amber-500/10 px-4 py-3 text-sm text-amber-100">
+          <p className="font-medium text-amber-50">Nothing matches these filters.</p>
+          <p className="mt-2 text-xs leading-relaxed text-amber-200/90">
+            There are upcoming races in the database, but none match what you chose.
+            Try turning on <strong>Only free streams</strong>, pick different series,
+            or clear series so “Everything” applies.
+          </p>
+        </div>
+      : <div className="rounded-xl border border-amber-500/35 bg-amber-500/10 px-4 py-3 text-sm text-amber-100">
+          <p className="font-medium text-amber-50">Nothing matches yet.</p>
+          <p className="mt-2 text-xs leading-relaxed text-amber-200/90">
+            Try relaxing filters first. If the calendar is still empty, your host may
+            need to seed race data (
+            <code className="rounded bg-black/25 px-1 py-px text-[11px]">
+              npx prisma db seed
+            </code>
+            ).
+          </p>
+        </div>
     : <div className="rounded-xl border border-emerald-500/30 bg-emerald-950/35 px-4 py-2.5 text-sm text-emerald-100">
         <strong className="text-emerald-50">{sessionCount}</strong>
         {" "}
         {sessionCount === 1 ? "race session" : "race sessions"}
         {" "}
-        in your calendar — subscribe or sync below so Google can load them.
+        will appear once you subscribe or push — Google can take a little while on the
+        first sync.
       </div>;
 
   const googleSteps = (

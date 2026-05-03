@@ -7,6 +7,7 @@ import {
   signFeedPayload,
 } from "@/lib/calendar-token";
 import { querySessionsForFeed } from "@/lib/session-query";
+import { prisma } from "@/lib/prisma";
 
 const ALLOWED: readonly Category[] = [
   Category.FORMULA,
@@ -119,11 +120,20 @@ export async function POST(req: Request) {
   }
 
   try {
-    const sessions = await querySessionsForFeed(payload);
+    const now = new Date();
+    const [sessions, dbSessionTotal, dbUpcomingTotal] = await Promise.all([
+      querySessionsForFeed(payload),
+      prisma.session.count(),
+      prisma.session.count({
+        where: { endsAt: { gte: now } },
+      }),
+    ]);
     const token = signFeedPayload(payload);
     return NextResponse.json({
       token,
       sessionCount: sessions.length,
+      dbSessionTotal,
+      dbUpcomingTotal,
     });
   } catch (cause) {
     return signFailureResponse(cause);
