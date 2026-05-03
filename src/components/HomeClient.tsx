@@ -166,7 +166,7 @@ export function HomeClient() {
     token && origin ? `${origin}/api/calendar/feed/${encodeURIComponent(token)}` : "";
 
   const googleSubscribeHelp =
-    "https://support.google.com/calendar/answer/37118?hl=en&co=GENIE.Platform%3DDesktop";
+    "https://support.google.com/calendar/answer/37100?hl=en";
 
   const connectHref = useMemo(() => {
     if (!token) return "";
@@ -294,8 +294,9 @@ export function HomeClient() {
             target="_blank"
             rel="noreferrer noopener"
             className="text-[11px] text-orange-400/90 underline-offset-2 hover:underline"
+            title="Use “From URL” to stay in sync — not Settings → Import"
           >
-            Add in Google Calendar
+            Subscribe from URL (Google)
           </Link>
         </div>
         {signErr ?
