@@ -5,11 +5,17 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { X } from "lucide-react";
 
 import { FilterStatusBanner } from "@/components/landing/FilterStatusBanner";
+import {
+  LandingCoverageAndPreview,
+  type LandingCoverageData,
+} from "@/components/landing/LandingCoverageAndPreview";
+import { LandingDisclaimer } from "@/components/landing/LandingDisclaimer";
 import { GoogleOAuthSection } from "@/components/landing/GoogleOAuthSection";
 import { LandingHero } from "@/components/landing/LandingHero";
 import { SubscribeCard } from "@/components/landing/SubscribeCard";
 import { SeriesFilterGrid } from "@/components/landing/SeriesFilterGrid";
 import type { UiCategory as Cat } from "@/components/CategoryIcon";
+import type { SerializedPreviewSession } from "@/lib/landing-serialize";
 
 const GOOGLE_IMPORT_HELP =
   "https://support.google.com/calendar/answer/37118?hl=en&co=GENIE.Platform%3DDesktop";
@@ -21,7 +27,12 @@ const GOOGLE_WEB_IMPORT_EXPORT =
 const APPLE_SUBSCRIBED_CAL_HELP =
   "https://support.apple.com/guide/iphone/use-multiple-calendars-iph8677073cfd/ios";
 
-export function HomeClient() {
+export type LandingShellData = {
+  previewSessions: SerializedPreviewSession[];
+  coverage: LandingCoverageData;
+};
+
+export function HomeClient({ landingData }: { landingData: LandingShellData }) {
   const searchParams = useSearchParams();
   const signFirstCycle = useRef(true);
 
@@ -369,6 +380,11 @@ export function HomeClient() {
         <div className="flex flex-col gap-12 lg:gap-16">
           <LandingHero />
 
+          <LandingCoverageAndPreview
+            coverage={landingData.coverage}
+            previewSessions={landingData.previewSessions}
+          />
+
           <div className="lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-10 xl:gap-x-16 2xl:gap-x-20">
             <div className="flex flex-col gap-8 lg:col-span-7 lg:gap-10">
               <SeriesFilterGrid picked={picked} onToggle={toggle} onClearCategories={clearCategories} />
@@ -458,6 +474,8 @@ export function HomeClient() {
               : null}
             </aside>
           </div>
+
+          <LandingDisclaimer className="mt-12 lg:mt-16" />
         </div>
       </div>
 

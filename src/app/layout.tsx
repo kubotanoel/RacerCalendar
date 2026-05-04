@@ -13,10 +13,36 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl =
+  typeof process.env.NEXT_PUBLIC_APP_ORIGIN === "string" &&
+  process.env.NEXT_PUBLIC_APP_ORIGIN.trim().length > 0
+    ? process.env.NEXT_PUBLIC_APP_ORIGIN.trim()
+    : "http://localhost:3000";
+
 export const metadata: Metadata = {
-  title: "RacerCalendar — watchable laps in Google Calendar",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "RacerCalendar — watchable laps in Google Calendar",
+    template: "%s · RacerCalendar",
+  },
   description:
-    "Filtered racing calendars with curated free-vs-paid streams, ICS subscribe or Google OAuth push.",
+    "Filtered racing calendars with curated free-vs-paid streams, ICS/Webcal subscribe, optional Google OAuth push, and shared public Google Calendar sync.",
+  openGraph: {
+    title: "RacerCalendar",
+    description:
+      "Racing schedules with watch links delivered to your calendar — Webcal or Google Calendar.",
+    url: "/",
+    siteName: "RacerCalendar",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "RacerCalendar — watchable laps in Google Calendar",
+    description:
+      "Racing calendars with ICS/Webcal, optional Gmail push sync, curated stream hints.",
+  },
+  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {

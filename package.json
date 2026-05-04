@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "db:seed": "prisma db seed",
+    "import:snapshot": "tsx scripts/import-snapshot.ts",
     "postinstall": "prisma generate"
   },
   "dependencies": {

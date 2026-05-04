@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 import { loadServiceAccountCredentials } from "@/lib/google/service-credentials";
 import { upsertSessionsToServiceCalendar } from "@/lib/google/service-calendar-sync";
+import { logEvent } from "@/lib/logger";
 import { querySessionsForFeed } from "@/lib/session-query";
 
 export const runtime = "nodejs";
@@ -102,9 +103,11 @@ async function handleSync(req: Request) {
       payloadApplied: payload,
     });
   } catch (cause) {
-    console.error("[api/calendar/service-sync]", cause);
     const msg =
       cause instanceof Error ? cause.message : "Service calendar sync failed";
+    logEvent("api.calendar.service-sync", "error", "sync_failed", {
+      detail: cause instanceof Error ? `${cause.stack ?? ""}` : String(cause),
+    });
     return NextResponse.json({ error: msg }, { status: 500 });
   }
 }

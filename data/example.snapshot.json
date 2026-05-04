@@ -1,0 +1,40 @@
+{
+  "$schema_comment": "POST /api/admin/import-snapshot with Authorization: Bearer $RACERCALENDAR_ADMIN_SECRET",
+  "series": [
+    {
+      "slug": "example-series",
+      "name": "Example Championship",
+      "category": "OTHER",
+      "ingestSource": "snapshot_example",
+      "licenseNotes": "Replace this file with attribution for your curated data.",
+      "events": [
+        {
+          "slug": "example-round-demo",
+          "name": "Example Grand Prix Weekend",
+          "venueName": "Example Circuit",
+          "timezone": "UTC",
+          "startDate": "2026-12-05T12:00:00.000Z",
+          "endDate": "2026-12-07T12:00:00.000Z",
+          "sessions": [
+            {
+              "externalKey": "demo-qualifying",
+              "title": "Qualifying",
+              "kind": "qualifying",
+              "startsAt": "2026-12-06T14:00:00.000Z",
+              "endsAt": "2026-12-06T15:00:00.000Z",
+              "watchOptions": [
+                {
+                  "platform": "Example broadcaster",
+                  "url": "https://example.com/watch",
+                  "requiresPayment": true,
+                  "notes": "Illustrative only",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

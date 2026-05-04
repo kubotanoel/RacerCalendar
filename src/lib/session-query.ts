@@ -23,6 +23,7 @@ export async function querySessionsForFeed(
   /** Keep sessions that haven't ended yet (future + ongoing). */
   const baseWhere: Prisma.SessionWhereInput = {
     endsAt: { gte: new Date() },
+    watchOptions: { some: { archived: false } },
     event: {
       series:
         categories.length > 0
@@ -35,15 +36,17 @@ export async function querySessionsForFeed(
 
   if (payload.freeOnly) {
     baseWhere.watchOptions = {
-      some: { requiresPayment: false },
+      some: { archived: false, requiresPayment: false },
     };
   }
+
+  const watchInclude: Prisma.WatchOptionWhereInput = { archived: false };
 
   return prisma.session.findMany({
     where: baseWhere,
     orderBy: { startsAt: "asc" },
     include: {
-      watchOptions: true,
+      watchOptions: { where: watchInclude },
       event: {
         include: { series: true },
       },

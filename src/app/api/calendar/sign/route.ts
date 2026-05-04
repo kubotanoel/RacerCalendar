@@ -6,6 +6,7 @@ import {
   resolveCalendarFeedSecret,
   signFeedPayload,
 } from "@/lib/calendar-token";
+import { logEvent } from "@/lib/logger";
 import { querySessionsForFeed } from "@/lib/session-query";
 import { prisma } from "@/lib/prisma";
 
@@ -23,7 +24,14 @@ const ALLOWED_SET = new Set<string>(ALLOWED);
 export const runtime = "nodejs";
 
 function signFailureResponse(cause: unknown) {
-  console.error("[api/calendar/sign]", cause);
+  logEvent("api.calendar.sign", "error", "request_failed", {
+    detail:
+      cause instanceof Error
+        ? `${cause.message}\n${cause.stack ?? ""}`
+        : typeof cause === "string"
+          ? cause
+          : String(cause),
+  });
 
   const msg =
     cause instanceof Error
@@ -31,7 +39,6 @@ function signFailureResponse(cause: unknown) {
       : typeof cause === "string"
         ? cause
         : `Unknown: ${String(cause)}`;
-
   const m = msg.toLowerCase();
   const prismaCode =
     typeof cause === "object" &&
@@ -125,7 +132,10 @@ export async function POST(req: Request) {
       querySessionsForFeed(payload),
       prisma.session.count(),
       prisma.session.count({
-        where: { endsAt: { gte: now } },
+        where: {
+          endsAt: { gte: now },
+          watchOptions: { some: { archived: false } },
+        },
       }),
     ]);
     const token = signFeedPayload(payload);

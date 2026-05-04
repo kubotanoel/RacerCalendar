@@ -17,39 +17,50 @@ enum Category {
 }
 
 model Series {
-  id        String   @id @default(cuid())
-  name      String
-  slug      String   @unique
-  category  Category
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  events    Event[]
+  id             String    @id @default(cuid())
+  name           String
+  slug           String    @unique
+  category       Category
+  /** Ingestion source tag, e.g. manual, json_import */
+  ingestSource   String    @default("manual")
+  dataSourceUrl  String?
+  licenseNotes   String?   @db.Text
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  events         Event[]
 }
 
 model Event {
-  id        String    @id @default(cuid())
-  seriesId  String
-  series    Series    @relation(fields: [seriesId], references: [id], onDelete: Cascade)
-  name      String
-  slug      String
-  venueName String
-  timezone  String
-  startDate DateTime
-  endDate   DateTime?
-  sessions  Session[]
+  id             String    @id @default(cuid())
+  seriesId       String
+  series         Series    @relation(fields: [seriesId], references: [id], onDelete: Cascade)
+  name           String
+  slug           String
+  venueName      String
+  timezone       String
+  startDate      DateTime
+  endDate        DateTime?
+  ingestSource   String    @default("manual")
+  dataSourceUrl  String?
+  sessions       Session[]
 
   @@unique([seriesId, slug])
 }
 
 model Session {
-  id           String        @id @default(cuid())
-  eventId      String
-  event        Event         @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  title        String
-  kind         String?
-  startsAt     DateTime
-  endsAt       DateTime
-  watchOptions WatchOption[]
+  id             String        @id @default(cuid())
+  eventId        String
+  event          Event         @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  title          String
+  kind           String?
+  startsAt       DateTime
+  endsAt         DateTime
+  /** Stable key from external ingest for idempotent upserts (unique per event). */
+  externalKey    String?
+  dataSourceUrl  String?
+  watchOptions   WatchOption[]
+
+  @@unique([eventId, externalKey])
 }
 
 model WatchOption {
@@ -63,6 +74,8 @@ model WatchOption {
   regions         String?
   sourceUrl       String?
   lastVerifiedAt  DateTime?
+  /** Soft-hide ingested rows without deleting history */
+  archived        Boolean   @default(false)
 }
 
 model GoogleAccount {
