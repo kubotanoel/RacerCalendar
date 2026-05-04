@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import "./globals.css";
@@ -17,6 +17,12 @@ export const metadata: Metadata = {
   title: "RacerCalendar — watchable laps in Google Calendar",
   description:
     "Filtered racing calendars with curated free-vs-paid streams, ICS subscribe or Google OAuth push.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({

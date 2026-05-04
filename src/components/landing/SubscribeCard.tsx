@@ -44,18 +44,20 @@ function PrimarySkeleton({ className }: { className?: string }) {
   return (
     <div
       aria-hidden
-      className={`min-h-[3.25rem] rounded-2xl bg-stone-200/95 motion-reduce:animate-none animate-pulse dark:bg-zinc-700/85 ${className ?? ""}`}
+      className={`min-h-14 w-full rounded-2xl bg-stone-200/95 motion-reduce:animate-none animate-pulse dark:bg-zinc-700/85 sm:min-h-[3.25rem] ${className ?? ""}`}
     />
   );
 }
 
 function PathChoiceStrip({ googleHeroSidecar }: { googleHeroSidecar: boolean }) {
   return (
-    <div className="mt-4 rounded-2xl border border-[var(--border-muted)] bg-[var(--surface-muted)] px-4 py-3 text-[13px] leading-snug shadow-sm motion-reduce:transition-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:shadow-none">
-      <p className="text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-zinc-500">
+    <div className="mt-3 rounded-2xl border border-[var(--border-muted)] bg-[var(--surface-muted)] px-3 py-2.5 text-[13px] leading-snug shadow-sm motion-reduce:transition-none dark:border-zinc-700 dark:bg-zinc-900/60 dark:shadow-none sm:mt-4 sm:px-4 sm:py-3">
+      <p className="text-[11px] font-semibold uppercase tracking-wide text-stone-500 dark:text-zinc-500 sm:text-xs">
         Choose your path
       </p>
-      <ul className="mt-2 space-y-2 text-[var(--text-secondary)] dark:text-zinc-400">
+      <ul
+        className={`mt-2 gap-2 text-[var(--text-secondary)] dark:text-zinc-400 sm:gap-3 ${googleHeroSidecar ? "grid max-sm:grid-cols-1 sm:grid-cols-2 sm:gap-x-4" : "space-y-2"}`}
+      >
         {googleHeroSidecar ?
           <li>
             <span className="font-semibold text-violet-700 dark:text-violet-300">Google in the browser</span>{" "}
@@ -102,31 +104,33 @@ export function SubscribeCard({
     <div
       id={cardId}
       aria-busy={linkLoading}
-      className="overflow-hidden rounded-3xl border border-[var(--border-muted-strong)] bg-[var(--surface-elevated)] p-5 shadow-[var(--shadow-card)] backdrop-blur-sm motion-reduce:transition-none lg:p-8 dark:border-zinc-700 dark:bg-zinc-900 dark:shadow-black/35"
+      className="scroll-mt-[5.5rem] overflow-hidden rounded-2xl border border-[var(--border-muted-strong)] bg-[var(--surface-elevated)] p-4 shadow-[var(--shadow-card)] backdrop-blur-sm motion-reduce:transition-none sm:scroll-mt-24 sm:rounded-3xl sm:p-6 lg:scroll-mt-28 lg:p-8 dark:border-zinc-700 dark:bg-zinc-900 dark:shadow-black/35"
     >
-      <header className="space-y-1.5">
-        <h2 className="text-lg font-semibold tracking-tight text-stone-900 sm:text-xl dark:text-white">
+      <header className="space-y-2">
+        <h2 className="text-xl font-semibold tracking-tight text-stone-900 dark:text-white sm:text-2xl">
           Get races on your calendar
         </h2>
-        <p className="text-[15px] leading-relaxed text-[var(--text-secondary)] dark:text-zinc-400">
-          One shared Google calendar for everyone, or a personal Webcal link that mirrors the filters below.
+        <p className="text-base leading-relaxed text-[var(--text-secondary)] dark:text-zinc-400 sm:text-[15px] sm:leading-relaxed">
+          One shared Google calendar, or your personal Webcal link — both follow the filters you set.
         </p>
       </header>
 
       <PathChoiceStrip googleHeroSidecar={googleHeroSidecar} />
 
-      <div className={`mt-6 grid gap-3 ${googleHeroSidecar ? "sm:grid-cols-2" : ""}`}>
+      <div
+        className={`mt-5 grid w-full gap-2.5 max-sm:grid-cols-1 sm:mt-6 sm:gap-3 ${googleHeroSidecar ? "sm:grid-cols-2" : ""}`}
+      >
         {publicGoogleCal?.subscribeHref ?
           <a
             href={publicGoogleCal.subscribeHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex min-h-[3.25rem] items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-violet-500 to-violet-600 px-5 py-3.5 text-center text-[15px] font-semibold text-white shadow-lg shadow-violet-950/50 ring-1 ring-white/10 transition motion-reduce:transition-none hover:from-violet-400 hover:to-violet-500 hover:shadow-violet-900/55 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-400"
+            className="group inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-violet-500 to-violet-600 px-4 py-3.5 text-center text-base font-semibold text-white shadow-lg shadow-violet-950/50 ring-1 ring-white/10 transition motion-reduce:transition-none active:brightness-95 sm:min-h-[3.25rem] sm:px-5 sm:text-[15px] hover:from-violet-400 hover:to-violet-500 hover:shadow-violet-900/55 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-400 max-sm:active:scale-[0.99] motion-reduce:active:scale-100"
           >
             <span className="drop-shadow-sm">Add to Google Calendar</span>
           </a>
         : publicGoogleCal?.credentialsConfigured ?
-          <div className="flex min-h-[3.25rem] flex-col justify-center rounded-2xl border border-dashed border-violet-300 bg-[var(--surface-muted)] px-4 py-3 text-center dark:border-violet-500/40 dark:bg-violet-950/30">
+          <div className="flex min-h-14 flex-col justify-center rounded-2xl border border-dashed border-violet-300 bg-[var(--surface-muted)] px-4 py-3 text-center dark:border-violet-500/40 dark:bg-violet-950/30 sm:min-h-[3.25rem]">
             <span className="text-sm font-semibold text-violet-900 dark:text-violet-200">Add to Google Calendar</span>
             <span className="mt-1 text-[11px] text-violet-800 dark:text-violet-300/90">
               First sync pending — host runs service-sync once.
@@ -140,12 +144,12 @@ export function SubscribeCard({
           <a
             href={webcalFeedUrl}
             rel="noopener noreferrer"
-            className="inline-flex min-h-[3.25rem] items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 px-5 py-3.5 text-center text-[15px] font-semibold text-white shadow-lg shadow-emerald-950/45 ring-1 ring-white/10 transition motion-reduce:transition-none hover:from-emerald-400 hover:to-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 sm:col-span-1"
+            className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 px-4 py-3.5 text-center text-base font-semibold text-white shadow-lg shadow-emerald-950/45 ring-1 ring-white/10 transition motion-reduce:transition-none active:brightness-95 max-sm:active:scale-[0.99] motion-reduce:active:scale-100 sm:min-h-[3.25rem] sm:col-span-1 sm:px-5 sm:text-[15px] hover:from-emerald-400 hover:to-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
           >
             <span>Add to Calendar</span>
           </a>
         : <span
-            className={`inline-flex min-h-[3.25rem] cursor-not-allowed items-center justify-center rounded-2xl border border-[var(--border-muted-strong)] bg-stone-100 px-5 py-3.5 text-center text-[15px] font-semibold text-[var(--text-muted)] shadow-inner shadow-white/75 motion-reduce:transition-none dark:border-zinc-600 dark:bg-zinc-800/50 dark:text-zinc-500 dark:shadow-none ${signErr ? "opacity-35" : linkLoading ? "opacity-55" : "opacity-50"}`}
+            className={`inline-flex min-h-14 w-full cursor-not-allowed items-center justify-center rounded-2xl border border-[var(--border-muted-strong)] bg-stone-100 px-4 py-3.5 text-center text-base font-semibold text-[var(--text-muted)] shadow-inner shadow-white/75 motion-reduce:transition-none dark:border-zinc-600 dark:bg-zinc-800/50 dark:text-zinc-500 dark:shadow-none sm:min-h-[3.25rem] sm:px-5 sm:text-[15px] ${signErr ? "opacity-35" : linkLoading ? "opacity-55" : "opacity-50"}`}
             aria-disabled="true"
           >
             Add to Calendar
@@ -164,7 +168,7 @@ export function SubscribeCard({
         type="button"
         aria-expanded={otherOptionsOpen}
         onClick={onToggleOtherOptions}
-        className="mt-7 flex w-full items-center justify-between gap-3 rounded-2xl border border-[var(--border-muted-strong)] bg-[var(--surface-muted)] px-4 py-3.5 text-left shadow-sm transition motion-reduce:transition-none hover:border-orange-400/70 hover:bg-[var(--surface-elevated)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 dark:border-zinc-700 dark:bg-zinc-950 dark:hover:border-zinc-600 dark:hover:bg-zinc-900"
+        className="mt-6 flex min-h-[3.25rem] w-full touch-manipulation items-center justify-between gap-3 rounded-2xl border border-[var(--border-muted-strong)] bg-[var(--surface-muted)] px-4 py-4 text-left shadow-sm transition motion-reduce:transition-none hover:border-orange-400/70 hover:bg-[var(--surface-elevated)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 active:bg-[var(--surface-elevated)] dark:border-zinc-700 dark:bg-zinc-950 dark:hover:border-zinc-600 dark:hover:bg-zinc-900 dark:active:bg-zinc-900 sm:mt-7 sm:py-3.5"
       >
         <span className="flex min-w-0 items-center gap-2.5">
           <ChevronDown
@@ -188,7 +192,7 @@ export function SubscribeCard({
               type="button"
               disabled={!feedUrl || linkLoading || !!signErr || downloadBusy}
               onClick={() => void downloadIcsFile()}
-              className="rounded-xl border border-[var(--border-muted-strong)] bg-[var(--surface-elevated)] px-3.5 py-2 text-[13px] font-medium text-stone-800 shadow-sm hover:bg-[var(--surface-muted)] disabled:pointer-events-none disabled:opacity-35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:bg-zinc-800"
+              className="touch-manipulation rounded-xl border border-[var(--border-muted-strong)] bg-[var(--surface-elevated)] px-3.5 py-2.5 text-[13px] font-medium text-stone-800 shadow-sm hover:bg-[var(--surface-muted)] disabled:pointer-events-none disabled:opacity-35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 active:scale-[0.99] motion-reduce:active:scale-100 dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:bg-zinc-800 max-sm:min-h-11"
             >
               {downloadBusy ? "Downloading…" : "Download .ics"}
             </button>
@@ -196,7 +200,7 @@ export function SubscribeCard({
               type="button"
               disabled={!feedUrl || linkLoading || !!signErr}
               onClick={() => void copyUrl()}
-              className="rounded-xl border border-[var(--border-muted-strong)] bg-[var(--surface-elevated)] px-3.5 py-2 text-[13px] font-medium text-stone-800 shadow-sm hover:bg-[var(--surface-muted)] disabled:pointer-events-none disabled:opacity-35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:bg-zinc-800"
+              className="touch-manipulation rounded-xl border border-[var(--border-muted-strong)] bg-[var(--surface-elevated)] px-3.5 py-2.5 text-[13px] font-medium text-stone-800 shadow-sm hover:bg-[var(--surface-muted)] disabled:pointer-events-none disabled:opacity-35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 active:scale-[0.99] motion-reduce:active:scale-100 dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:bg-zinc-800 max-sm:min-h-11"
             >
               {copied ? "Copied" : "Copy HTTPS feed"}
             </button>
@@ -204,7 +208,7 @@ export function SubscribeCard({
               <button
                 type="button"
                 onClick={() => void copyPublicCalendarId()}
-                className="rounded-xl border border-[var(--border-muted-strong)] bg-[var(--surface-elevated)] px-3.5 py-2 text-[13px] font-medium text-stone-800 shadow-sm hover:bg-[var(--surface-muted)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:bg-zinc-800"
+                className="touch-manipulation rounded-xl border border-[var(--border-muted-strong)] bg-[var(--surface-elevated)] px-3.5 py-2.5 text-[13px] font-medium text-stone-800 shadow-sm hover:bg-[var(--surface-muted)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 active:scale-[0.99] motion-reduce:active:scale-100 dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:bg-zinc-800 max-sm:min-h-11"
               >
                 {copiedCalId ? "Copied calendar ID" : "Copy calendar ID"}
               </button>

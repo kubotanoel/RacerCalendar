@@ -349,7 +349,7 @@ export function HomeClient() {
       {oauthBannerMsg ?
         <div
           role="alert"
-          className="mx-auto max-w-6xl px-4 pt-8 sm:px-6 xl:px-10"
+          className="mx-auto max-w-5xl px-4 pt-8 sm:px-6 xl:max-w-6xl xl:px-10"
         >
           <div className="flex gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-950 shadow-sm dark:border-red-500/35 dark:bg-red-500/18 dark:text-red-50">
             <p className="min-w-0 flex-1 leading-relaxed">{oauthBannerMsg}</p>
@@ -365,99 +365,116 @@ export function HomeClient() {
         </div>
       : null}
 
-      <div className="mx-auto max-w-6xl px-4 pb-28 pt-10 sm:px-6 lg:pb-32 lg:pt-14 xl:px-10">
-        <div className="flex flex-col gap-10 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-14 lg:gap-y-12">
-          <div className="order-2 flex flex-col gap-8 lg:order-1 lg:col-span-6 xl:col-span-7 lg:gap-10">
-            <LandingHero />
+      <div className="mx-auto max-w-5xl px-4 pb-32 pt-6 max-lg:pb-[7.5rem] sm:px-6 lg:max-w-6xl lg:pb-40 lg:pt-10 xl:max-w-7xl 2xl:px-12">
+        <div className="flex flex-col gap-12 lg:gap-16">
+          <LandingHero />
 
-            <SeriesFilterGrid picked={picked} onToggle={toggle} onClearCategories={clearCategories} />
+          <div className="lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-10 xl:gap-x-16 2xl:gap-x-20">
+            <div className="flex flex-col gap-8 lg:col-span-7 lg:gap-10">
+              <SeriesFilterGrid picked={picked} onToggle={toggle} onClearCategories={clearCategories} />
 
-            <div className="flex flex-col gap-4 lg:gap-5">
-              <button
-                type="button"
-                role="switch"
-                aria-checked={freeOnly}
-                aria-labelledby="free-only-heading free-only-hint"
-                title="Sessions need at least one free stream in our data."
-                id="free-only-switch"
-                onClick={() => setFreeOnly(!freeOnly)}
-                className="flex items-center justify-between gap-6 rounded-2xl border border-[var(--border-muted-strong)] bg-[var(--surface-elevated)] px-5 py-3.5 text-left shadow-sm transition motion-reduce:transition-none hover:border-orange-400/70 hover:bg-[var(--surface-muted)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 lg:max-w-md dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-zinc-600"
-              >
-                <div>
-                  <p
-                    id="free-only-heading"
-                    className="text-[15px] font-medium text-stone-900 dark:text-zinc-100"
-                  >
-                    Only show free streams
-                  </p>
-                  <p id="free-only-hint" className="mt-0.5 text-[13px] text-[var(--text-secondary)] dark:text-zinc-500">
-                    Hides races we only know as paid-only.
-                  </p>
-                </div>
-                <span
-                  className={`motion-reduce:transition-none relative inline-flex h-[26px] w-[46px] shrink-0 rounded-full transition ${
-                    freeOnly ? "bg-orange-600" : "bg-zinc-500 dark:bg-zinc-600"
-                  }`}
-                  aria-hidden
+              <div className="flex flex-col gap-4 lg:gap-5">
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={freeOnly}
+                  aria-labelledby="free-only-heading free-only-hint"
+                  title="Sessions need at least one free stream in our data."
+                  id="free-only-switch"
+                  onClick={() => setFreeOnly(!freeOnly)}
+                  className="flex min-h-[52px] items-center justify-between gap-6 rounded-2xl border border-[var(--border-muted-strong)] bg-[var(--surface-elevated)] px-5 py-4 text-left shadow-sm transition motion-reduce:transition-none hover:border-orange-400/70 hover:bg-[var(--surface-muted)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 active:bg-[var(--surface-muted)] lg:max-w-md lg:min-h-0 lg:py-3.5 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-zinc-600"
                 >
+                  <div>
+                    <p
+                      id="free-only-heading"
+                      className="text-[15px] font-medium text-stone-900 dark:text-zinc-100"
+                    >
+                      Only show free streams
+                    </p>
+                    <p id="free-only-hint" className="mt-0.5 text-[13px] text-[var(--text-secondary)] dark:text-zinc-500">
+                      Hides races we only know as paid-only.
+                    </p>
+                  </div>
                   <span
-                    className={`motion-reduce:transition-none absolute top-[3px] size-5 rounded-full bg-white shadow transition-all ${
-                      freeOnly ? "left-[21px]" : "left-[3px]"
+                    className={`motion-reduce:transition-none relative inline-flex h-[26px] w-[46px] shrink-0 rounded-full transition ${
+                      freeOnly ? "bg-orange-600" : "bg-zinc-500 dark:bg-zinc-600"
                     }`}
-                  />
-                </span>
-              </button>
+                    aria-hidden
+                  >
+                    <span
+                      className={`motion-reduce:transition-none absolute top-[3px] size-5 rounded-full bg-white shadow transition-all ${
+                        freeOnly ? "left-[21px]" : "left-[3px]"
+                      }`}
+                    />
+                  </span>
+                </button>
 
-              {signErr ?
-                <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-[13px] text-red-950 dark:border-red-500/35 dark:bg-red-500/15 dark:text-red-50">
-                  {signErr}
-                </p>
-              : null}
+                {signErr ?
+                  <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-[13px] text-red-950 dark:border-red-500/35 dark:bg-red-500/15 dark:text-red-50">
+                    {signErr}
+                  </p>
+                : null}
 
-              <FilterStatusBanner sessionCount={sessionCount} dbTotals={dbTotals} />
+                <FilterStatusBanner sessionCount={sessionCount} dbTotals={dbTotals} />
+              </div>
             </div>
-          </div>
 
-          <aside className="order-1 flex flex-col gap-5 lg:order-2 lg:col-span-6 xl:col-span-5 lg:sticky lg:top-[5.25rem]">
-            <SubscribeCard
-              cardId="subscribe-by-url"
-              publicGoogleCal={publicGoogleCal}
-              googleHeroSidecar={googleHeroSidecar}
-              webcalFeedUrl={webcalFeedUrl}
-              linkLoading={linkLoading}
-              signErr={signErr}
-              feedUrl={feedUrl}
-              copyUrl={() => void copyUrl()}
-              copied={copied}
-              downloadIcsFile={() => void downloadIcsFile()}
-              downloadBusy={downloadBusy}
-              copyPublicCalendarId={() => void copyPublicCalendarId()}
-              copiedCalId={copiedCalId}
-              googleReady={googleReady}
-              otherOptionsOpen={otherOptionsOpen}
-              onToggleOtherOptions={() => setOtherOptionsOpen((o) => !o)}
-              urls={urlBundle}
-            />
-
-            {googleReady ?
-              <GoogleOAuthSection
-                sessionEmail={sessionEmail}
-                connectHref={connectHref}
-                syncMsg={syncMsg}
-                syncBusy={syncBusy}
-                token={token}
-                onStartOAuth={startGoogleOAuth}
-                onPushSync={() => void pushSyncManual()}
-                onScrollSubscribe={() =>
-                  document
-                    .getElementById("subscribe-by-url")
-                    ?.scrollIntoView({ behavior: "smooth", block: "start" })
-                }
+            <aside className="mt-10 flex flex-col gap-5 border-t border-[var(--border-muted)] pt-10 lg:sticky lg:top-20 lg:col-span-5 lg:mt-0 lg:border-none lg:pt-0 xl:top-[4.75rem]">
+              <SubscribeCard
+                cardId="subscribe-by-url"
+                publicGoogleCal={publicGoogleCal}
+                googleHeroSidecar={googleHeroSidecar}
+                webcalFeedUrl={webcalFeedUrl}
+                linkLoading={linkLoading}
+                signErr={signErr}
+                feedUrl={feedUrl}
+                copyUrl={() => void copyUrl()}
+                copied={copied}
+                downloadIcsFile={() => void downloadIcsFile()}
+                downloadBusy={downloadBusy}
+                copyPublicCalendarId={() => void copyPublicCalendarId()}
+                copiedCalId={copiedCalId}
+                googleReady={googleReady}
+                otherOptionsOpen={otherOptionsOpen}
+                onToggleOtherOptions={() => setOtherOptionsOpen((o) => !o)}
+                urls={urlBundle}
               />
-            : null}
-          </aside>
+
+              {googleReady ?
+                <GoogleOAuthSection
+                  sessionEmail={sessionEmail}
+                  connectHref={connectHref}
+                  syncMsg={syncMsg}
+                  syncBusy={syncBusy}
+                  token={token}
+                  onStartOAuth={startGoogleOAuth}
+                  onPushSync={() => void pushSyncManual()}
+                  onScrollSubscribe={() =>
+                    document
+                      .getElementById("subscribe-by-url")
+                      ?.scrollIntoView({ behavior: "smooth", block: "start" })
+                  }
+                />
+              : null}
+            </aside>
+          </div>
         </div>
       </div>
+
+      <nav
+        aria-label="Jump to calendar subscribe"
+        className="fixed inset-x-0 bottom-0 z-40 border-t border-[var(--border-muted-strong)] bg-[var(--surface-elevated)]/95 backdrop-blur-md supports-[backdrop-filter]:bg-[var(--surface-elevated)]/85 lg:hidden dark:border-zinc-700 dark:bg-zinc-950/95"
+        style={{ paddingBottom: "max(12px, env(safe-area-inset-bottom, 0px))" }}
+      >
+        <div className="mx-auto flex max-w-lg items-center gap-2 px-3 py-2.5">
+          <a
+            href="#subscribe-by-url"
+            className="flex min-h-[48px] flex-1 touch-manipulation items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-600 to-emerald-700 px-4 text-center text-sm font-semibold text-white shadow-md shadow-emerald-950/30 transition active:brightness-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500"
+          >
+            Subscribe — add to calendar
+          </a>
+        </div>
+      </nav>
     </div>
   );
 }
