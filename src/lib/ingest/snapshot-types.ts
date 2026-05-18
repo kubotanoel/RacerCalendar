@@ -44,5 +44,11 @@ export type SnapshotSeriesInput = {
 };
 
 export type SnapshotBundleInput = {
+  /**
+   * Opt-in destructive flag. When `true`, ALL existing Series rows (and their cascaded events,
+   * sessions, watch options) are deleted before the upsert runs in the same transaction.
+   * Use for full-replace imports (e.g. clearing demo seed). Defaults to additive upsert.
+   */
+  replace?: boolean;
   series: SnapshotSeriesInput[];
 };

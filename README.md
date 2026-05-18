@@ -10,9 +10,13 @@ Requires **PostgreSQL** (Prisma) and **Next.js 16**.
 cp .env.example .env.local # fill DATABASE_URL + secrets listed below
 npm install
 npx prisma migrate deploy
-npm run db:seed            # demo IMSA + F1-ish rows (anchors move with “today”)
+npm run db:seed            # WIPES every Series and imports data/f1-2026.snapshot.json
 npm run dev
 ```
+
+> The seed is a destructive full-replace from the checked-in F1 2026 snapshot. There is no
+> demo data — running `db:seed` puts the real calendar in. Regenerate the snapshot from the
+> typed table with `npm run build:f1-2026` if a round shifts.
 
 Open [`http://localhost:3000`](http://localhost:3000).
 
@@ -33,28 +37,45 @@ See [.env.example](.env.example) for commentary on Google **service-account** ca
 
 ## Bringing real race data online
 
-Production instances should ingest schedules instead of relying only on demo seed:
+Two ingestion paths, both feeding the same validator (`src/lib/ingest/upsert-snapshot.ts`):
 
-1. Build a conforming **`{ "series": [ … ] }`** JSON bundle (shape matches [data/example.snapshot.json](data/example.snapshot.json)).
-2. **Upsert**:
+1. **Curated snapshot file** (used by the F1 2026 calendar shipped in this repo):
 
-   ```bash
-   curl -fsS \
-     -H "Authorization: Bearer $RACERCALENDAR_ADMIN_SECRET" \
-     -H "Content-Type: application/json" \
-     --data @./data/my.snapshot.json \
-     "$NEXT_PUBLIC_APP_ORIGIN/api/admin/import-snapshot"
-   ```
+   - Source of truth: [scripts/build-f1-2026-snapshot.ts](scripts/build-f1-2026-snapshot.ts) — a typed table of every round (slug, venue, IANA timezone, race UTC start, weekend window).
+   - Run `npm run build:f1-2026` to regenerate `data/f1-2026.snapshot.json`.
+   - The JSON shape matches [data/example.snapshot.json](data/example.snapshot.json).
 
-   or locally:
+2. **Any other JSON snapshot**: build a `{ "series": [ … ] }` bundle following the same shape.
 
-   ```bash
-   RACERCALENDAR_ADMIN_SECRET="$RACERCALENDAR_ADMIN_SECRET" \
-     npm run import:snapshot -- ./data/my.snapshot.json
-   ```
+### Pushing data to a deployed instance
 
-3. Attribution fields (`Series.dataSourceUrl`, `licenseNotes`, `Session.dataSourceUrl`, etc.) persist for disclosures.
-4. Mark stale watch descriptors with **`WatchOption.archived: true`** via re-import—they’re filtered from feeds/sync.
+```bash
+curl -fsS \
+  -H "Authorization: Bearer $RACERCALENDAR_ADMIN_SECRET" \
+  -H "Content-Type: application/json" \
+  --data @./data/f1-2026.snapshot.json \
+  "$NEXT_PUBLIC_APP_ORIGIN/api/admin/import-snapshot"
+```
+
+### Locally (or from a CI box with `DATABASE_URL` set)
+
+```bash
+RACERCALENDAR_ADMIN_SECRET="$RACERCALENDAR_ADMIN_SECRET" \
+  npm run import:snapshot -- ./data/f1-2026.snapshot.json
+```
+
+### Destructive replace vs additive upsert
+
+Set `"replace": true` at the top of the bundle (the F1 2026 snapshot does this) to wipe **all**
+existing `Series` rows (cascading to events / sessions / watch options) inside the same
+transaction before the upsert runs. Omit the flag (or set `false`) for the default
+slug-by-slug upsert. `npm run db:seed` always forces replace semantics — it is operator
+intent to reset to the snapshot.
+
+### Attribution / housekeeping
+
+- `Series.dataSourceUrl`, `licenseNotes`, `Session.dataSourceUrl` persist for disclosures.
+- Mark stale watch descriptors with **`WatchOption.archived: true`** via re-import — they're filtered from feeds/sync.
 
 Cron still hits `/api/calendar/service-sync` daily (configure service account vars) once data exists.
 

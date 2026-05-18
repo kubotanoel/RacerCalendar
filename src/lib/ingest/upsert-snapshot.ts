@@ -22,6 +22,10 @@ function coerceBundle(body: unknown): SnapshotBundleInput {
   if (!body || typeof body !== "object") throw new Error("Body must be a JSON object");
   const series = (body as { series?: unknown }).series;
   if (!Array.isArray(series)) throw new Error('Expected top-level property "series" (array)');
+  const replace = (body as { replace?: unknown }).replace;
+  if (replace !== undefined && typeof replace !== "boolean") {
+    throw new Error('Top-level "replace" must be a boolean if present');
+  }
   return body as SnapshotBundleInput;
 }
 
@@ -215,14 +219,22 @@ export async function upsertSnapshotFromJson(body: unknown): Promise<{
   seriesUpserted: number;
   eventsUpserted: number;
   sessionsUpserted: number;
+  replaced: boolean;
+  seriesDeleted: number;
 }> {
   const bundle = coerceBundle(body);
   let seriesUpserted = 0;
   let eventsUpserted = 0;
   let sessionsUpserted = 0;
+  let seriesDeleted = 0;
+  const replaced = bundle.replace === true;
 
   await prisma.$transaction(
     async (tx) => {
+      if (replaced) {
+        const { count } = await tx.series.deleteMany({});
+        seriesDeleted = count;
+      }
       for (let i = 0; i < bundle.series.length; i++) {
         const s = bundle.series[i]!;
         assertSeries(s, i);
@@ -280,5 +292,5 @@ export async function upsertSnapshotFromJson(body: unknown): Promise<{
     { timeout: 120_000 },
   );
 
-  return { seriesUpserted, eventsUpserted, sessionsUpserted };
+  return { seriesUpserted, eventsUpserted, sessionsUpserted, replaced, seriesDeleted };
 }

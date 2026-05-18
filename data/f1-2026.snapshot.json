@@ -1,0 +1,895 @@
+{
+  "replace": true,
+  "series": [
+    {
+      "slug": "f1",
+      "name": "Formula 1 World Championship",
+      "category": "FORMULA",
+      "ingestSource": "snapshot_f1_2026",
+      "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+      "licenseNotes": "Schedule sourced from formula1.com 2026 calendar and the public Wikipedia 2026 F1 article. Names/trademarks belong to their respective owners; data is editorial reference only.",
+      "events": [
+        {
+          "slug": "f1-2026-australia",
+          "name": "Formula 1 Qatar Airways Australian Grand Prix 2026",
+          "venueName": "Albert Park Circuit, Melbourne",
+          "timezone": "Australia/Melbourne",
+          "startDate": "2026-03-06T00:00:00.000Z",
+          "endDate": "2026-03-08T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-australia-race",
+              "title": "Grand Prix",
+              "kind": "race",
+              "startsAt": "2026-03-08T04:00:00.000Z",
+              "endsAt": "2026-03-08T06:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-china",
+          "name": "Formula 1 Heineken Chinese Grand Prix 2026",
+          "venueName": "Shanghai International Circuit",
+          "timezone": "Asia/Shanghai",
+          "startDate": "2026-03-13T00:00:00.000Z",
+          "endDate": "2026-03-15T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-china-race",
+              "title": "Grand Prix (Sprint weekend)",
+              "kind": "race",
+              "startsAt": "2026-03-15T07:00:00.000Z",
+              "endsAt": "2026-03-15T09:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-japan",
+          "name": "Formula 1 Aramco Japanese Grand Prix 2026",
+          "venueName": "Suzuka International Racing Course",
+          "timezone": "Asia/Tokyo",
+          "startDate": "2026-03-27T00:00:00.000Z",
+          "endDate": "2026-03-29T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-japan-race",
+              "title": "Grand Prix",
+              "kind": "race",
+              "startsAt": "2026-03-29T05:00:00.000Z",
+              "endsAt": "2026-03-29T07:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-miami",
+          "name": "Formula 1 Crypto.com Miami Grand Prix 2026",
+          "venueName": "Miami International Autodrome",
+          "timezone": "America/New_York",
+          "startDate": "2026-05-01T00:00:00.000Z",
+          "endDate": "2026-05-03T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-miami-race",
+              "title": "Grand Prix (Sprint weekend)",
+              "kind": "race",
+              "startsAt": "2026-05-03T20:00:00.000Z",
+              "endsAt": "2026-05-03T22:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-canada",
+          "name": "Formula 1 Lenovo Grand Prix du Canada 2026",
+          "venueName": "Circuit Gilles Villeneuve, Montréal",
+          "timezone": "America/Toronto",
+          "startDate": "2026-05-22T00:00:00.000Z",
+          "endDate": "2026-05-24T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-canada-race",
+              "title": "Grand Prix (Sprint weekend)",
+              "kind": "race",
+              "startsAt": "2026-05-24T18:00:00.000Z",
+              "endsAt": "2026-05-24T20:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-monaco",
+          "name": "Formula 1 Louis Vuitton Grand Prix de Monaco 2026",
+          "venueName": "Circuit de Monaco",
+          "timezone": "Europe/Monaco",
+          "startDate": "2026-06-05T00:00:00.000Z",
+          "endDate": "2026-06-07T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-monaco-race",
+              "title": "Grand Prix",
+              "kind": "race",
+              "startsAt": "2026-06-07T13:00:00.000Z",
+              "endsAt": "2026-06-07T15:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-barcelona-catalunya",
+          "name": "Formula 1 MSC Cruises Gran Premio de Barcelona-Catalunya 2026",
+          "venueName": "Circuit de Barcelona-Catalunya, Montmeló",
+          "timezone": "Europe/Madrid",
+          "startDate": "2026-06-12T00:00:00.000Z",
+          "endDate": "2026-06-14T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-barcelona-catalunya-race",
+              "title": "Grand Prix",
+              "kind": "race",
+              "startsAt": "2026-06-14T13:00:00.000Z",
+              "endsAt": "2026-06-14T15:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-austria",
+          "name": "Formula 1 Lenovo Austrian Grand Prix 2026",
+          "venueName": "Red Bull Ring, Spielberg",
+          "timezone": "Europe/Vienna",
+          "startDate": "2026-06-26T00:00:00.000Z",
+          "endDate": "2026-06-28T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-austria-race",
+              "title": "Grand Prix",
+              "kind": "race",
+              "startsAt": "2026-06-28T13:00:00.000Z",
+              "endsAt": "2026-06-28T15:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-great-britain",
+          "name": "Formula 1 Pirelli British Grand Prix 2026",
+          "venueName": "Silverstone Circuit",
+          "timezone": "Europe/London",
+          "startDate": "2026-07-03T00:00:00.000Z",
+          "endDate": "2026-07-05T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-great-britain-race",
+              "title": "Grand Prix (Sprint weekend)",
+              "kind": "race",
+              "startsAt": "2026-07-05T14:00:00.000Z",
+              "endsAt": "2026-07-05T16:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-belgium",
+          "name": "Formula 1 Moët & Chandon Belgian Grand Prix 2026",
+          "venueName": "Circuit de Spa-Francorchamps",
+          "timezone": "Europe/Brussels",
+          "startDate": "2026-07-17T00:00:00.000Z",
+          "endDate": "2026-07-19T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-belgium-race",
+              "title": "Grand Prix",
+              "kind": "race",
+              "startsAt": "2026-07-19T13:00:00.000Z",
+              "endsAt": "2026-07-19T15:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-hungary",
+          "name": "Formula 1 AWS Hungarian Grand Prix 2026",
+          "venueName": "Hungaroring, Mogyoród",
+          "timezone": "Europe/Budapest",
+          "startDate": "2026-07-24T00:00:00.000Z",
+          "endDate": "2026-07-26T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-hungary-race",
+              "title": "Grand Prix",
+              "kind": "race",
+              "startsAt": "2026-07-26T13:00:00.000Z",
+              "endsAt": "2026-07-26T15:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-netherlands",
+          "name": "Formula 1 Heineken Dutch Grand Prix 2026",
+          "venueName": "Circuit Zandvoort",
+          "timezone": "Europe/Amsterdam",
+          "startDate": "2026-08-21T00:00:00.000Z",
+          "endDate": "2026-08-23T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-netherlands-race",
+              "title": "Grand Prix (Sprint weekend)",
+              "kind": "race",
+              "startsAt": "2026-08-23T13:00:00.000Z",
+              "endsAt": "2026-08-23T15:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-italy",
+          "name": "Formula 1 Pirelli Gran Premio d'Italia 2026",
+          "venueName": "Autodromo Nazionale Monza",
+          "timezone": "Europe/Rome",
+          "startDate": "2026-09-04T00:00:00.000Z",
+          "endDate": "2026-09-06T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-italy-race",
+              "title": "Grand Prix",
+              "kind": "race",
+              "startsAt": "2026-09-06T13:00:00.000Z",
+              "endsAt": "2026-09-06T15:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-spain",
+          "name": "Formula 1 TAG Heuer Gran Premio de España 2026",
+          "venueName": "Madring, IFEMA Madrid (street circuit)",
+          "timezone": "Europe/Madrid",
+          "startDate": "2026-09-11T00:00:00.000Z",
+          "endDate": "2026-09-13T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-spain-race",
+              "title": "Grand Prix",
+              "kind": "race",
+              "startsAt": "2026-09-13T13:00:00.000Z",
+              "endsAt": "2026-09-13T15:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-azerbaijan",
+          "name": "Formula 1 Qatar Airways Azerbaijan Grand Prix 2026",
+          "venueName": "Baku City Circuit",
+          "timezone": "Asia/Baku",
+          "startDate": "2026-09-24T00:00:00.000Z",
+          "endDate": "2026-09-26T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-azerbaijan-race",
+              "title": "Grand Prix",
+              "kind": "race",
+              "startsAt": "2026-09-26T09:00:00.000Z",
+              "endsAt": "2026-09-26T11:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-singapore",
+          "name": "Formula 1 Singapore Airlines Singapore Grand Prix 2026",
+          "venueName": "Marina Bay Street Circuit",
+          "timezone": "Asia/Singapore",
+          "startDate": "2026-10-09T00:00:00.000Z",
+          "endDate": "2026-10-11T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-singapore-race",
+              "title": "Grand Prix (Sprint weekend)",
+              "kind": "race",
+              "startsAt": "2026-10-11T12:00:00.000Z",
+              "endsAt": "2026-10-11T14:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-united-states",
+          "name": "Formula 1 MSC Cruises United States Grand Prix 2026",
+          "venueName": "Circuit of The Americas, Austin",
+          "timezone": "America/Chicago",
+          "startDate": "2026-10-23T00:00:00.000Z",
+          "endDate": "2026-10-25T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-united-states-race",
+              "title": "Grand Prix",
+              "kind": "race",
+              "startsAt": "2026-10-25T19:00:00.000Z",
+              "endsAt": "2026-10-25T21:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-mexico",
+          "name": "Formula 1 Gran Premio de la Ciudad de México 2026",
+          "venueName": "Autódromo Hermanos Rodríguez, Mexico City",
+          "timezone": "America/Mexico_City",
+          "startDate": "2026-10-30T00:00:00.000Z",
+          "endDate": "2026-11-01T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-mexico-race",
+              "title": "Grand Prix",
+              "kind": "race",
+              "startsAt": "2026-11-01T20:00:00.000Z",
+              "endsAt": "2026-11-01T22:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-brazil",
+          "name": "Formula 1 MSC Cruises Grande Prêmio de São Paulo 2026",
+          "venueName": "Autódromo José Carlos Pace, Interlagos",
+          "timezone": "America/Sao_Paulo",
+          "startDate": "2026-11-06T00:00:00.000Z",
+          "endDate": "2026-11-08T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-brazil-race",
+              "title": "Grand Prix",
+              "kind": "race",
+              "startsAt": "2026-11-08T17:00:00.000Z",
+              "endsAt": "2026-11-08T19:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-las-vegas",
+          "name": "Formula 1 Heineken Las Vegas Grand Prix 2026",
+          "venueName": "Las Vegas Strip Circuit",
+          "timezone": "America/Los_Angeles",
+          "startDate": "2026-11-19T00:00:00.000Z",
+          "endDate": "2026-11-21T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-las-vegas-race",
+              "title": "Grand Prix",
+              "kind": "race",
+              "startsAt": "2026-11-22T04:00:00.000Z",
+              "endsAt": "2026-11-22T06:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-qatar",
+          "name": "Formula 1 Qatar Airways Qatar Grand Prix 2026",
+          "venueName": "Lusail International Circuit",
+          "timezone": "Asia/Qatar",
+          "startDate": "2026-11-27T00:00:00.000Z",
+          "endDate": "2026-11-29T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-qatar-race",
+              "title": "Grand Prix",
+              "kind": "race",
+              "startsAt": "2026-11-29T16:00:00.000Z",
+              "endsAt": "2026-11-29T18:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "f1-2026-abu-dhabi",
+          "name": "Formula 1 Etihad Airways Abu Dhabi Grand Prix 2026",
+          "venueName": "Yas Marina Circuit",
+          "timezone": "Asia/Dubai",
+          "startDate": "2026-12-04T00:00:00.000Z",
+          "endDate": "2026-12-06T23:59:59.000Z",
+          "ingestSource": "snapshot_f1_2026",
+          "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+          "sessions": [
+            {
+              "externalKey": "f1-2026-abu-dhabi-race",
+              "title": "Grand Prix",
+              "kind": "race",
+              "startsAt": "2026-12-06T13:00:00.000Z",
+              "endsAt": "2026-12-06T15:30:00.000Z",
+              "dataSourceUrl": "https://www.formula1.com/en/racing/2026",
+              "watchOptions": [
+                {
+                  "platform": "F1 TV Pro",
+                  "url": "https://f1tv.formula1.com",
+                  "requiresPayment": true,
+                  "notes": "Live world feed of every session. Availability and pricing vary by country; some markets are blacked out where a local broadcaster holds rights.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                },
+                {
+                  "platform": "Formula 1 (Official YouTube)",
+                  "url": "https://www.youtube.com/@Formula1",
+                  "requiresPayment": false,
+                  "notes": "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
+                  "sourceUrl": "https://www.formula1.com",
+                  "lastVerifiedAt": "2026-05-18T20:17:43.520Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
