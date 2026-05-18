@@ -72,6 +72,12 @@ model WatchOption {
   platform        String
   url             String
   requiresPayment Boolean   @default(true)
+  /**
+   * Does this option carry the actual race live? `false` means free-but-only-highlights
+   * (e.g. a series' official YouTube posting clips after the chequered flag). The
+   * "Only free live streams" filter requires `requiresPayment=false AND liveCoverage=true`.
+   */
+  liveCoverage    Boolean   @default(true)
   notes           String?
   regions         String?
   sourceUrl       String?

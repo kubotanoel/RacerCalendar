@@ -1,0 +1,1164 @@
+{
+  "replace": false,
+  "series": [
+    {
+      "slug": "wec",
+      "name": "FIA World Endurance Championship",
+      "category": "SPORTSCAR",
+      "ingestSource": "snapshot_sportscar_2026",
+      "dataSourceUrl": "https://www.fiawec.com",
+      "licenseNotes": "Schedule from fia.com / fiawec.com 2026 calendar. Names and trademarks belong to their respective owners.",
+      "events": [
+        {
+          "slug": "wec-2026-qatar",
+          "name": "Qatar 1812 km",
+          "venueName": "Lusail International Circuit",
+          "timezone": "Asia/Qatar",
+          "startDate": "2026-03-26T00:00:00.000Z",
+          "endDate": "2026-03-28T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.fiawec.com",
+          "sessions": [
+            {
+              "externalKey": "wec-2026-qatar-race",
+              "title": "Qatar 1812 km",
+              "kind": "race",
+              "startsAt": "2026-03-28T11:00:00.000Z",
+              "endsAt": "2026-03-28T21:12:00.000Z",
+              "dataSourceUrl": "https://www.fiawec.com",
+              "watchOptions": [
+                {
+                  "platform": "FIA WEC TV",
+                  "url": "https://www.fiawec.tv",
+                  "requiresPayment": true,
+                  "liveCoverage": true,
+                  "notes": "Official global live stream. Paid subscription. Coverage and pricing vary by territory.",
+                  "sourceUrl": "https://www.fiawec.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                },
+                {
+                  "platform": "FIA WEC (Official YouTube)",
+                  "url": "https://www.youtube.com/@FIAWEC_OFFICIAL",
+                  "requiresPayment": false,
+                  "liveCoverage": false,
+                  "notes": "Free highlights, qualifying replays and post-race clips. Live race coverage is on FIA WEC TV / local broadcasters, not YouTube.",
+                  "sourceUrl": "https://www.fiawec.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "wec-2026-imola",
+          "name": "6 Hours of Imola",
+          "venueName": "Autodromo Enzo e Dino Ferrari, Imola",
+          "timezone": "Europe/Rome",
+          "startDate": "2026-04-17T00:00:00.000Z",
+          "endDate": "2026-04-19T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.fiawec.com",
+          "sessions": [
+            {
+              "externalKey": "wec-2026-imola-race",
+              "title": "6 Hours of Imola",
+              "kind": "race",
+              "startsAt": "2026-04-19T11:00:00.000Z",
+              "endsAt": "2026-04-19T17:00:00.000Z",
+              "dataSourceUrl": "https://www.fiawec.com",
+              "watchOptions": [
+                {
+                  "platform": "FIA WEC TV",
+                  "url": "https://www.fiawec.tv",
+                  "requiresPayment": true,
+                  "liveCoverage": true,
+                  "notes": "Official global live stream. Paid subscription. Coverage and pricing vary by territory.",
+                  "sourceUrl": "https://www.fiawec.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                },
+                {
+                  "platform": "FIA WEC (Official YouTube)",
+                  "url": "https://www.youtube.com/@FIAWEC_OFFICIAL",
+                  "requiresPayment": false,
+                  "liveCoverage": false,
+                  "notes": "Free highlights, qualifying replays and post-race clips. Live race coverage is on FIA WEC TV / local broadcasters, not YouTube.",
+                  "sourceUrl": "https://www.fiawec.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "wec-2026-spa",
+          "name": "TotalEnergies 6 Hours of Spa-Francorchamps",
+          "venueName": "Circuit de Spa-Francorchamps",
+          "timezone": "Europe/Brussels",
+          "startDate": "2026-05-07T00:00:00.000Z",
+          "endDate": "2026-05-09T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.fiawec.com",
+          "sessions": [
+            {
+              "externalKey": "wec-2026-spa-race",
+              "title": "6 Hours of Spa-Francorchamps",
+              "kind": "race",
+              "startsAt": "2026-05-09T11:00:00.000Z",
+              "endsAt": "2026-05-09T17:00:00.000Z",
+              "dataSourceUrl": "https://www.fiawec.com",
+              "watchOptions": [
+                {
+                  "platform": "FIA WEC TV",
+                  "url": "https://www.fiawec.tv",
+                  "requiresPayment": true,
+                  "liveCoverage": true,
+                  "notes": "Official global live stream. Paid subscription. Coverage and pricing vary by territory.",
+                  "sourceUrl": "https://www.fiawec.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                },
+                {
+                  "platform": "FIA WEC (Official YouTube)",
+                  "url": "https://www.youtube.com/@FIAWEC_OFFICIAL",
+                  "requiresPayment": false,
+                  "liveCoverage": false,
+                  "notes": "Free highlights, qualifying replays and post-race clips. Live race coverage is on FIA WEC TV / local broadcasters, not YouTube.",
+                  "sourceUrl": "https://www.fiawec.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "wec-2026-le-mans",
+          "name": "24 Hours of Le Mans",
+          "venueName": "Circuit de la Sarthe, Le Mans",
+          "timezone": "Europe/Paris",
+          "startDate": "2026-06-10T00:00:00.000Z",
+          "endDate": "2026-06-14T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.fiawec.com",
+          "sessions": [
+            {
+              "externalKey": "wec-2026-le-mans-race",
+              "title": "24 Hours of Le Mans",
+              "kind": "race",
+              "startsAt": "2026-06-13T14:00:00.000Z",
+              "endsAt": "2026-06-14T14:00:00.000Z",
+              "dataSourceUrl": "https://www.fiawec.com",
+              "watchOptions": [
+                {
+                  "platform": "FIA WEC TV",
+                  "url": "https://www.fiawec.tv",
+                  "requiresPayment": true,
+                  "liveCoverage": true,
+                  "notes": "Official global live stream. Paid subscription. Coverage and pricing vary by territory.",
+                  "sourceUrl": "https://www.fiawec.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                },
+                {
+                  "platform": "FIA WEC (Official YouTube)",
+                  "url": "https://www.youtube.com/@FIAWEC_OFFICIAL",
+                  "requiresPayment": false,
+                  "liveCoverage": false,
+                  "notes": "Free highlights, qualifying replays and post-race clips. Live race coverage is on FIA WEC TV / local broadcasters, not YouTube.",
+                  "sourceUrl": "https://www.fiawec.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "wec-2026-sao-paulo",
+          "name": "Rolex 6 Hours of São Paulo",
+          "venueName": "Autódromo José Carlos Pace, Interlagos",
+          "timezone": "America/Sao_Paulo",
+          "startDate": "2026-07-10T00:00:00.000Z",
+          "endDate": "2026-07-12T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.fiawec.com",
+          "sessions": [
+            {
+              "externalKey": "wec-2026-sao-paulo-race",
+              "title": "6 Hours of São Paulo",
+              "kind": "race",
+              "startsAt": "2026-07-12T14:30:00.000Z",
+              "endsAt": "2026-07-12T20:30:00.000Z",
+              "dataSourceUrl": "https://www.fiawec.com",
+              "watchOptions": [
+                {
+                  "platform": "FIA WEC TV",
+                  "url": "https://www.fiawec.tv",
+                  "requiresPayment": true,
+                  "liveCoverage": true,
+                  "notes": "Official global live stream. Paid subscription. Coverage and pricing vary by territory.",
+                  "sourceUrl": "https://www.fiawec.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                },
+                {
+                  "platform": "FIA WEC (Official YouTube)",
+                  "url": "https://www.youtube.com/@FIAWEC_OFFICIAL",
+                  "requiresPayment": false,
+                  "liveCoverage": false,
+                  "notes": "Free highlights, qualifying replays and post-race clips. Live race coverage is on FIA WEC TV / local broadcasters, not YouTube.",
+                  "sourceUrl": "https://www.fiawec.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "wec-2026-cota",
+          "name": "Lone Star Le Mans",
+          "venueName": "Circuit of The Americas, Austin",
+          "timezone": "America/Chicago",
+          "startDate": "2026-09-04T00:00:00.000Z",
+          "endDate": "2026-09-06T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.fiawec.com",
+          "sessions": [
+            {
+              "externalKey": "wec-2026-cota-race",
+              "title": "Lone Star Le Mans (6 Hours of COTA)",
+              "kind": "race",
+              "startsAt": "2026-09-05T18:00:00.000Z",
+              "endsAt": "2026-09-06T00:00:00.000Z",
+              "dataSourceUrl": "https://www.fiawec.com",
+              "watchOptions": [
+                {
+                  "platform": "FIA WEC TV",
+                  "url": "https://www.fiawec.tv",
+                  "requiresPayment": true,
+                  "liveCoverage": true,
+                  "notes": "Official global live stream. Paid subscription. Coverage and pricing vary by territory.",
+                  "sourceUrl": "https://www.fiawec.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                },
+                {
+                  "platform": "FIA WEC (Official YouTube)",
+                  "url": "https://www.youtube.com/@FIAWEC_OFFICIAL",
+                  "requiresPayment": false,
+                  "liveCoverage": false,
+                  "notes": "Free highlights, qualifying replays and post-race clips. Live race coverage is on FIA WEC TV / local broadcasters, not YouTube.",
+                  "sourceUrl": "https://www.fiawec.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "wec-2026-fuji",
+          "name": "6 Hours of Fuji",
+          "venueName": "Fuji Speedway",
+          "timezone": "Asia/Tokyo",
+          "startDate": "2026-09-25T00:00:00.000Z",
+          "endDate": "2026-09-27T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.fiawec.com",
+          "sessions": [
+            {
+              "externalKey": "wec-2026-fuji-race",
+              "title": "6 Hours of Fuji",
+              "kind": "race",
+              "startsAt": "2026-09-27T02:00:00.000Z",
+              "endsAt": "2026-09-27T08:00:00.000Z",
+              "dataSourceUrl": "https://www.fiawec.com",
+              "watchOptions": [
+                {
+                  "platform": "FIA WEC TV",
+                  "url": "https://www.fiawec.tv",
+                  "requiresPayment": true,
+                  "liveCoverage": true,
+                  "notes": "Official global live stream. Paid subscription. Coverage and pricing vary by territory.",
+                  "sourceUrl": "https://www.fiawec.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                },
+                {
+                  "platform": "FIA WEC (Official YouTube)",
+                  "url": "https://www.youtube.com/@FIAWEC_OFFICIAL",
+                  "requiresPayment": false,
+                  "liveCoverage": false,
+                  "notes": "Free highlights, qualifying replays and post-race clips. Live race coverage is on FIA WEC TV / local broadcasters, not YouTube.",
+                  "sourceUrl": "https://www.fiawec.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "wec-2026-bahrain",
+          "name": "Bapco Energies 8 Hours of Bahrain",
+          "venueName": "Bahrain International Circuit",
+          "timezone": "Asia/Bahrain",
+          "startDate": "2026-11-05T00:00:00.000Z",
+          "endDate": "2026-11-07T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.fiawec.com",
+          "sessions": [
+            {
+              "externalKey": "wec-2026-bahrain-race",
+              "title": "8 Hours of Bahrain",
+              "kind": "race",
+              "startsAt": "2026-11-07T11:00:00.000Z",
+              "endsAt": "2026-11-07T19:00:00.000Z",
+              "dataSourceUrl": "https://www.fiawec.com",
+              "watchOptions": [
+                {
+                  "platform": "FIA WEC TV",
+                  "url": "https://www.fiawec.tv",
+                  "requiresPayment": true,
+                  "liveCoverage": true,
+                  "notes": "Official global live stream. Paid subscription. Coverage and pricing vary by territory.",
+                  "sourceUrl": "https://www.fiawec.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                },
+                {
+                  "platform": "FIA WEC (Official YouTube)",
+                  "url": "https://www.youtube.com/@FIAWEC_OFFICIAL",
+                  "requiresPayment": false,
+                  "liveCoverage": false,
+                  "notes": "Free highlights, qualifying replays and post-race clips. Live race coverage is on FIA WEC TV / local broadcasters, not YouTube.",
+                  "sourceUrl": "https://www.fiawec.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "imsa-weathertech",
+      "name": "IMSA WeatherTech SportsCar Championship",
+      "category": "SPORTSCAR",
+      "ingestSource": "snapshot_sportscar_2026",
+      "dataSourceUrl": "https://www.imsa.com/weathertech/weathertech-2026-schedule/",
+      "licenseNotes": "Schedule from imsa.com official 2026 calendar. Names and trademarks belong to their respective owners.",
+      "events": [
+        {
+          "slug": "imsa-2026-daytona",
+          "name": "Rolex 24 At Daytona",
+          "venueName": "Daytona International Speedway",
+          "timezone": "America/New_York",
+          "startDate": "2026-01-22T00:00:00.000Z",
+          "endDate": "2026-01-25T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.imsa.com",
+          "sessions": [
+            {
+              "externalKey": "imsa-2026-daytona-race",
+              "title": "Rolex 24 At Daytona",
+              "kind": "race",
+              "startsAt": "2026-01-24T18:40:00.000Z",
+              "endsAt": "2026-01-25T18:40:00.000Z",
+              "dataSourceUrl": "https://www.imsa.com",
+              "watchOptions": [
+                {
+                  "platform": "Peacock (US)",
+                  "url": "https://www.peacocktv.com",
+                  "requiresPayment": true,
+                  "liveCoverage": true,
+                  "notes": "Official US live stream for the WeatherTech SportsCar Championship; paid NBCUniversal subscription. Select races also air on NBC over-the-air in the US.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "regions": "US",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                },
+                {
+                  "platform": "IMSA Official (YouTube)",
+                  "url": "https://www.youtube.com/@IMSARacingOfficial",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Selected practice/qualifying and some race sessions stream live for free on the IMSA Official YouTube channel, plus replays/highlights. Coverage varies by round and region; in the US the race is typically on NBC/Peacock.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "imsa-2026-sebring",
+          "name": "Mobil 1 Twelve Hours of Sebring",
+          "venueName": "Sebring International Raceway",
+          "timezone": "America/New_York",
+          "startDate": "2026-03-18T00:00:00.000Z",
+          "endDate": "2026-03-21T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.imsa.com",
+          "sessions": [
+            {
+              "externalKey": "imsa-2026-sebring-race",
+              "title": "Twelve Hours of Sebring",
+              "kind": "race",
+              "startsAt": "2026-03-21T14:10:00.000Z",
+              "endsAt": "2026-03-22T02:10:00.000Z",
+              "dataSourceUrl": "https://www.imsa.com",
+              "watchOptions": [
+                {
+                  "platform": "Peacock (US)",
+                  "url": "https://www.peacocktv.com",
+                  "requiresPayment": true,
+                  "liveCoverage": true,
+                  "notes": "Official US live stream for the WeatherTech SportsCar Championship; paid NBCUniversal subscription. Select races also air on NBC over-the-air in the US.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "regions": "US",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                },
+                {
+                  "platform": "IMSA Official (YouTube)",
+                  "url": "https://www.youtube.com/@IMSARacingOfficial",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Selected practice/qualifying and some race sessions stream live for free on the IMSA Official YouTube channel, plus replays/highlights. Coverage varies by round and region; in the US the race is typically on NBC/Peacock.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "imsa-2026-long-beach",
+          "name": "Acura Grand Prix of Long Beach",
+          "venueName": "Long Beach Street Circuit",
+          "timezone": "America/Los_Angeles",
+          "startDate": "2026-04-17T00:00:00.000Z",
+          "endDate": "2026-04-19T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.imsa.com",
+          "sessions": [
+            {
+              "externalKey": "imsa-2026-long-beach-race",
+              "title": "Long Beach 100min",
+              "kind": "race",
+              "startsAt": "2026-04-18T22:05:00.000Z",
+              "endsAt": "2026-04-18T23:45:00.000Z",
+              "dataSourceUrl": "https://www.imsa.com",
+              "watchOptions": [
+                {
+                  "platform": "Peacock (US)",
+                  "url": "https://www.peacocktv.com",
+                  "requiresPayment": true,
+                  "liveCoverage": true,
+                  "notes": "Official US live stream for the WeatherTech SportsCar Championship; paid NBCUniversal subscription. Select races also air on NBC over-the-air in the US.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "regions": "US",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                },
+                {
+                  "platform": "IMSA Official (YouTube)",
+                  "url": "https://www.youtube.com/@IMSARacingOfficial",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Selected practice/qualifying and some race sessions stream live for free on the IMSA Official YouTube channel, plus replays/highlights. Coverage varies by round and region; in the US the race is typically on NBC/Peacock.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "imsa-2026-laguna-seca",
+          "name": "WeatherTech Raceway Laguna Seca",
+          "venueName": "WeatherTech Raceway Laguna Seca",
+          "timezone": "America/Los_Angeles",
+          "startDate": "2026-05-01T00:00:00.000Z",
+          "endDate": "2026-05-03T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.imsa.com",
+          "sessions": [
+            {
+              "externalKey": "imsa-2026-laguna-seca-race",
+              "title": "Monterey 2h40",
+              "kind": "race",
+              "startsAt": "2026-05-03T19:10:00.000Z",
+              "endsAt": "2026-05-03T21:50:00.000Z",
+              "dataSourceUrl": "https://www.imsa.com",
+              "watchOptions": [
+                {
+                  "platform": "Peacock (US)",
+                  "url": "https://www.peacocktv.com",
+                  "requiresPayment": true,
+                  "liveCoverage": true,
+                  "notes": "Official US live stream for the WeatherTech SportsCar Championship; paid NBCUniversal subscription. Select races also air on NBC over-the-air in the US.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "regions": "US",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                },
+                {
+                  "platform": "IMSA Official (YouTube)",
+                  "url": "https://www.youtube.com/@IMSARacingOfficial",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Selected practice/qualifying and some race sessions stream live for free on the IMSA Official YouTube channel, plus replays/highlights. Coverage varies by round and region; in the US the race is typically on NBC/Peacock.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "imsa-2026-detroit",
+          "name": "Chevrolet Detroit Grand Prix",
+          "venueName": "Detroit Street Circuit",
+          "timezone": "America/New_York",
+          "startDate": "2026-05-29T00:00:00.000Z",
+          "endDate": "2026-05-30T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.imsa.com",
+          "sessions": [
+            {
+              "externalKey": "imsa-2026-detroit-race",
+              "title": "Detroit 100min",
+              "kind": "race",
+              "startsAt": "2026-05-30T17:10:00.000Z",
+              "endsAt": "2026-05-30T18:50:00.000Z",
+              "dataSourceUrl": "https://www.imsa.com",
+              "watchOptions": [
+                {
+                  "platform": "Peacock (US)",
+                  "url": "https://www.peacocktv.com",
+                  "requiresPayment": true,
+                  "liveCoverage": true,
+                  "notes": "Official US live stream for the WeatherTech SportsCar Championship; paid NBCUniversal subscription. Select races also air on NBC over-the-air in the US.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "regions": "US",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                },
+                {
+                  "platform": "IMSA Official (YouTube)",
+                  "url": "https://www.youtube.com/@IMSARacingOfficial",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Selected practice/qualifying and some race sessions stream live for free on the IMSA Official YouTube channel, plus replays/highlights. Coverage varies by round and region; in the US the race is typically on NBC/Peacock.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "imsa-2026-watkins-glen",
+          "name": "Sahlen's Six Hours of The Glen",
+          "venueName": "Watkins Glen International",
+          "timezone": "America/New_York",
+          "startDate": "2026-06-25T00:00:00.000Z",
+          "endDate": "2026-06-28T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.imsa.com",
+          "sessions": [
+            {
+              "externalKey": "imsa-2026-watkins-glen-race",
+              "title": "Six Hours of The Glen",
+              "kind": "race",
+              "startsAt": "2026-06-28T14:40:00.000Z",
+              "endsAt": "2026-06-28T20:40:00.000Z",
+              "dataSourceUrl": "https://www.imsa.com",
+              "watchOptions": [
+                {
+                  "platform": "Peacock (US)",
+                  "url": "https://www.peacocktv.com",
+                  "requiresPayment": true,
+                  "liveCoverage": true,
+                  "notes": "Official US live stream for the WeatherTech SportsCar Championship; paid NBCUniversal subscription. Select races also air on NBC over-the-air in the US.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "regions": "US",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                },
+                {
+                  "platform": "IMSA Official (YouTube)",
+                  "url": "https://www.youtube.com/@IMSARacingOfficial",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Selected practice/qualifying and some race sessions stream live for free on the IMSA Official YouTube channel, plus replays/highlights. Coverage varies by round and region; in the US the race is typically on NBC/Peacock.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "imsa-2026-mosport",
+          "name": "Chevrolet Grand Prix",
+          "venueName": "Canadian Tire Motorsport Park, Bowmanville",
+          "timezone": "America/Toronto",
+          "startDate": "2026-07-10T00:00:00.000Z",
+          "endDate": "2026-07-12T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.imsa.com",
+          "sessions": [
+            {
+              "externalKey": "imsa-2026-mosport-race",
+              "title": "Mosport 2h40",
+              "kind": "race",
+              "startsAt": "2026-07-12T17:05:00.000Z",
+              "endsAt": "2026-07-12T19:45:00.000Z",
+              "dataSourceUrl": "https://www.imsa.com",
+              "watchOptions": [
+                {
+                  "platform": "Peacock (US)",
+                  "url": "https://www.peacocktv.com",
+                  "requiresPayment": true,
+                  "liveCoverage": true,
+                  "notes": "Official US live stream for the WeatherTech SportsCar Championship; paid NBCUniversal subscription. Select races also air on NBC over-the-air in the US.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "regions": "US",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                },
+                {
+                  "platform": "IMSA Official (YouTube)",
+                  "url": "https://www.youtube.com/@IMSARacingOfficial",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Selected practice/qualifying and some race sessions stream live for free on the IMSA Official YouTube channel, plus replays/highlights. Coverage varies by round and region; in the US the race is typically on NBC/Peacock.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "imsa-2026-road-america",
+          "name": "Motul SportsCar Endurance Grand Prix",
+          "venueName": "Road America, Elkhart Lake",
+          "timezone": "America/Chicago",
+          "startDate": "2026-07-30T00:00:00.000Z",
+          "endDate": "2026-08-02T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.imsa.com",
+          "sessions": [
+            {
+              "externalKey": "imsa-2026-road-america-race",
+              "title": "Road America 6 Hours",
+              "kind": "race",
+              "startsAt": "2026-08-02T16:10:00.000Z",
+              "endsAt": "2026-08-02T22:10:00.000Z",
+              "dataSourceUrl": "https://www.imsa.com",
+              "watchOptions": [
+                {
+                  "platform": "Peacock (US)",
+                  "url": "https://www.peacocktv.com",
+                  "requiresPayment": true,
+                  "liveCoverage": true,
+                  "notes": "Official US live stream for the WeatherTech SportsCar Championship; paid NBCUniversal subscription. Select races also air on NBC over-the-air in the US.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "regions": "US",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                },
+                {
+                  "platform": "IMSA Official (YouTube)",
+                  "url": "https://www.youtube.com/@IMSARacingOfficial",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Selected practice/qualifying and some race sessions stream live for free on the IMSA Official YouTube channel, plus replays/highlights. Coverage varies by round and region; in the US the race is typically on NBC/Peacock.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "imsa-2026-vir",
+          "name": "Michelin GT Challenge at VIR",
+          "venueName": "Virginia International Raceway, Alton",
+          "timezone": "America/New_York",
+          "startDate": "2026-08-21T00:00:00.000Z",
+          "endDate": "2026-08-23T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.imsa.com",
+          "sessions": [
+            {
+              "externalKey": "imsa-2026-vir-race",
+              "title": "VIR 2h40 (GT only)",
+              "kind": "race",
+              "startsAt": "2026-08-23T17:10:00.000Z",
+              "endsAt": "2026-08-23T19:50:00.000Z",
+              "dataSourceUrl": "https://www.imsa.com",
+              "watchOptions": [
+                {
+                  "platform": "Peacock (US)",
+                  "url": "https://www.peacocktv.com",
+                  "requiresPayment": true,
+                  "liveCoverage": true,
+                  "notes": "Official US live stream for the WeatherTech SportsCar Championship; paid NBCUniversal subscription. Select races also air on NBC over-the-air in the US.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "regions": "US",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                },
+                {
+                  "platform": "IMSA Official (YouTube)",
+                  "url": "https://www.youtube.com/@IMSARacingOfficial",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Selected practice/qualifying and some race sessions stream live for free on the IMSA Official YouTube channel, plus replays/highlights. Coverage varies by round and region; in the US the race is typically on NBC/Peacock.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "imsa-2026-indy",
+          "name": "TireRack.com Battle On The Bricks",
+          "venueName": "Indianapolis Motor Speedway",
+          "timezone": "America/Indiana/Indianapolis",
+          "startDate": "2026-09-18T00:00:00.000Z",
+          "endDate": "2026-09-20T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.imsa.com",
+          "sessions": [
+            {
+              "externalKey": "imsa-2026-indy-race",
+              "title": "Indianapolis 2h40",
+              "kind": "race",
+              "startsAt": "2026-09-20T16:10:00.000Z",
+              "endsAt": "2026-09-20T18:50:00.000Z",
+              "dataSourceUrl": "https://www.imsa.com",
+              "watchOptions": [
+                {
+                  "platform": "Peacock (US)",
+                  "url": "https://www.peacocktv.com",
+                  "requiresPayment": true,
+                  "liveCoverage": true,
+                  "notes": "Official US live stream for the WeatherTech SportsCar Championship; paid NBCUniversal subscription. Select races also air on NBC over-the-air in the US.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "regions": "US",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                },
+                {
+                  "platform": "IMSA Official (YouTube)",
+                  "url": "https://www.youtube.com/@IMSARacingOfficial",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Selected practice/qualifying and some race sessions stream live for free on the IMSA Official YouTube channel, plus replays/highlights. Coverage varies by round and region; in the US the race is typically on NBC/Peacock.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "imsa-2026-petit-le-mans",
+          "name": "Motul Petit Le Mans",
+          "venueName": "Michelin Raceway Road Atlanta",
+          "timezone": "America/New_York",
+          "startDate": "2026-09-30T00:00:00.000Z",
+          "endDate": "2026-10-03T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.imsa.com",
+          "sessions": [
+            {
+              "externalKey": "imsa-2026-petit-le-mans-race",
+              "title": "Petit Le Mans (10 Hours)",
+              "kind": "race",
+              "startsAt": "2026-10-03T16:05:00.000Z",
+              "endsAt": "2026-10-04T02:05:00.000Z",
+              "dataSourceUrl": "https://www.imsa.com",
+              "watchOptions": [
+                {
+                  "platform": "Peacock (US)",
+                  "url": "https://www.peacocktv.com",
+                  "requiresPayment": true,
+                  "liveCoverage": true,
+                  "notes": "Official US live stream for the WeatherTech SportsCar Championship; paid NBCUniversal subscription. Select races also air on NBC over-the-air in the US.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "regions": "US",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                },
+                {
+                  "platform": "IMSA Official (YouTube)",
+                  "url": "https://www.youtube.com/@IMSARacingOfficial",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Selected practice/qualifying and some race sessions stream live for free on the IMSA Official YouTube channel, plus replays/highlights. Coverage varies by round and region; in the US the race is typically on NBC/Peacock.",
+                  "sourceUrl": "https://www.imsa.com",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "nls",
+      "name": "ADAC RAVENOL Nürburgring Langstrecken-Serie",
+      "category": "SPORTSCAR",
+      "ingestSource": "snapshot_sportscar_2026",
+      "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+      "licenseNotes": "Schedule from the official NLS site. Names and trademarks belong to their respective owners.",
+      "events": [
+        {
+          "slug": "nls-2026-r1-westfalenfahrt",
+          "name": "NLS1: 71. ADAC Westfalenfahrt",
+          "venueName": "Nürburgring Nordschleife",
+          "timezone": "Europe/Berlin",
+          "startDate": "2026-03-13T00:00:00.000Z",
+          "endDate": "2026-03-14T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+          "sessions": [
+            {
+              "externalKey": "nls-2026-r1-westfalenfahrt-race",
+              "title": "NLS1 (4h)",
+              "kind": "race",
+              "startsAt": "2026-03-14T11:00:00.000Z",
+              "endsAt": "2026-03-14T15:00:00.000Z",
+              "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+              "watchOptions": [
+                {
+                  "platform": "NLS (Official YouTube)",
+                  "url": "https://www.youtube.com/@NLS_offiziell",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Every NLS round streams free, live and uninterrupted on the official NLS YouTube channel — German feed with an English commentary option.",
+                  "sourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "nls-2026-r2-barbarossapreis",
+          "name": "NLS2: 58. ADAC Barbarossapreis",
+          "venueName": "Nürburgring Nordschleife",
+          "timezone": "Europe/Berlin",
+          "startDate": "2026-03-20T00:00:00.000Z",
+          "endDate": "2026-03-21T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+          "sessions": [
+            {
+              "externalKey": "nls-2026-r2-barbarossapreis-race",
+              "title": "NLS2 (4h)",
+              "kind": "race",
+              "startsAt": "2026-03-21T11:00:00.000Z",
+              "endsAt": "2026-03-21T15:00:00.000Z",
+              "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+              "watchOptions": [
+                {
+                  "platform": "NLS (Official YouTube)",
+                  "url": "https://www.youtube.com/@NLS_offiziell",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Every NLS round streams free, live and uninterrupted on the official NLS YouTube channel — German feed with an English commentary option.",
+                  "sourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "nls-2026-r3-rundstrecken-trophy",
+          "name": "NLS3: 57. Adenauer ADAC Rundstrecken-Trophy",
+          "venueName": "Nürburgring Nordschleife",
+          "timezone": "Europe/Berlin",
+          "startDate": "2026-04-10T00:00:00.000Z",
+          "endDate": "2026-04-11T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+          "sessions": [
+            {
+              "externalKey": "nls-2026-r3-rundstrecken-trophy-race",
+              "title": "NLS3 (4h)",
+              "kind": "race",
+              "startsAt": "2026-04-11T10:00:00.000Z",
+              "endsAt": "2026-04-11T14:00:00.000Z",
+              "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+              "watchOptions": [
+                {
+                  "platform": "NLS (Official YouTube)",
+                  "url": "https://www.youtube.com/@NLS_offiziell",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Every NLS round streams free, live and uninterrupted on the official NLS YouTube channel — German feed with an English commentary option.",
+                  "sourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "nls-2026-r4-qualifiers-day1",
+          "name": "NLS4 / 24h Qualifiers Race 1",
+          "venueName": "Nürburgring Nordschleife",
+          "timezone": "Europe/Berlin",
+          "startDate": "2026-04-18T00:00:00.000Z",
+          "endDate": "2026-04-19T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+          "sessions": [
+            {
+              "externalKey": "nls-2026-r4-qualifiers-day1-race",
+              "title": "NLS4 24h Qualifiers (4h)",
+              "kind": "race",
+              "startsAt": "2026-04-18T10:00:00.000Z",
+              "endsAt": "2026-04-18T14:00:00.000Z",
+              "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+              "watchOptions": [
+                {
+                  "platform": "NLS (Official YouTube)",
+                  "url": "https://www.youtube.com/@NLS_offiziell",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Every NLS round streams free, live and uninterrupted on the official NLS YouTube channel — German feed with an English commentary option.",
+                  "sourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "nls-2026-r5-qualifiers-day2",
+          "name": "NLS5 / 24h Qualifiers Race 2",
+          "venueName": "Nürburgring Nordschleife",
+          "timezone": "Europe/Berlin",
+          "startDate": "2026-04-18T00:00:00.000Z",
+          "endDate": "2026-04-19T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+          "sessions": [
+            {
+              "externalKey": "nls-2026-r5-qualifiers-day2-race",
+              "title": "NLS5 24h Qualifiers (4h)",
+              "kind": "race",
+              "startsAt": "2026-04-19T10:00:00.000Z",
+              "endsAt": "2026-04-19T14:00:00.000Z",
+              "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+              "watchOptions": [
+                {
+                  "platform": "NLS (Official YouTube)",
+                  "url": "https://www.youtube.com/@NLS_offiziell",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Every NLS round streams free, live and uninterrupted on the official NLS YouTube channel — German feed with an English commentary option.",
+                  "sourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "nls-2026-r6-eifel-trophy",
+          "name": "NLS6: 1. ADAC Eifel Trophy",
+          "venueName": "Nürburgring Nordschleife",
+          "timezone": "Europe/Berlin",
+          "startDate": "2026-06-19T00:00:00.000Z",
+          "endDate": "2026-06-20T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+          "sessions": [
+            {
+              "externalKey": "nls-2026-r6-eifel-trophy-race",
+              "title": "NLS6 (4h)",
+              "kind": "race",
+              "startsAt": "2026-06-20T10:00:00.000Z",
+              "endsAt": "2026-06-20T14:00:00.000Z",
+              "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+              "watchOptions": [
+                {
+                  "platform": "NLS (Official YouTube)",
+                  "url": "https://www.youtube.com/@NLS_offiziell",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Every NLS round streams free, live and uninterrupted on the official NLS YouTube channel — German feed with an English commentary option.",
+                  "sourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "nls-2026-r7-ruhr-pokal-6h",
+          "name": "NLS7: KW 6h ADAC Ruhr-Pokal-Rennen",
+          "venueName": "Nürburgring Nordschleife",
+          "timezone": "Europe/Berlin",
+          "startDate": "2026-07-31T00:00:00.000Z",
+          "endDate": "2026-08-01T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+          "sessions": [
+            {
+              "externalKey": "nls-2026-r7-ruhr-pokal-6h-race",
+              "title": "NLS7 6h Ruhr-Pokal",
+              "kind": "race",
+              "startsAt": "2026-08-01T10:00:00.000Z",
+              "endsAt": "2026-08-01T16:00:00.000Z",
+              "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+              "watchOptions": [
+                {
+                  "platform": "NLS (Official YouTube)",
+                  "url": "https://www.youtube.com/@NLS_offiziell",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Every NLS round streams free, live and uninterrupted on the official NLS YouTube channel — German feed with an English commentary option.",
+                  "sourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "nls-2026-r8-reinoldus",
+          "name": "NLS8: 65. ADAC Reinoldus-Langstreckenrennen",
+          "venueName": "Nürburgring Nordschleife",
+          "timezone": "Europe/Berlin",
+          "startDate": "2026-09-11T00:00:00.000Z",
+          "endDate": "2026-09-12T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+          "sessions": [
+            {
+              "externalKey": "nls-2026-r8-reinoldus-race",
+              "title": "NLS8 (4h)",
+              "kind": "race",
+              "startsAt": "2026-09-12T10:00:00.000Z",
+              "endsAt": "2026-09-12T14:00:00.000Z",
+              "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+              "watchOptions": [
+                {
+                  "platform": "NLS (Official YouTube)",
+                  "url": "https://www.youtube.com/@NLS_offiziell",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Every NLS round streams free, live and uninterrupted on the official NLS YouTube channel — German feed with an English commentary option.",
+                  "sourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "nls-2026-r9-acas-cup",
+          "name": "NLS9: 66. ADAC ACAS Cup",
+          "venueName": "Nürburgring Nordschleife",
+          "timezone": "Europe/Berlin",
+          "startDate": "2026-09-12T00:00:00.000Z",
+          "endDate": "2026-09-13T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+          "sessions": [
+            {
+              "externalKey": "nls-2026-r9-acas-cup-race",
+              "title": "NLS9 (4h)",
+              "kind": "race",
+              "startsAt": "2026-09-13T10:00:00.000Z",
+              "endsAt": "2026-09-13T14:00:00.000Z",
+              "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+              "watchOptions": [
+                {
+                  "platform": "NLS (Official YouTube)",
+                  "url": "https://www.youtube.com/@NLS_offiziell",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Every NLS round streams free, live and uninterrupted on the official NLS YouTube channel — German feed with an English commentary option.",
+                  "sourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "slug": "nls-2026-r10-sportwarte-trophy",
+          "name": "NLS10: 2. NLS Sportwarte-Trophy",
+          "venueName": "Nürburgring Nordschleife",
+          "timezone": "Europe/Berlin",
+          "startDate": "2026-10-09T00:00:00.000Z",
+          "endDate": "2026-10-10T23:59:59.000Z",
+          "ingestSource": "snapshot_sportscar_2026",
+          "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+          "sessions": [
+            {
+              "externalKey": "nls-2026-r10-sportwarte-trophy-race",
+              "title": "NLS10 (4h)",
+              "kind": "race",
+              "startsAt": "2026-10-10T10:00:00.000Z",
+              "endsAt": "2026-10-10T14:00:00.000Z",
+              "dataSourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+              "watchOptions": [
+                {
+                  "platform": "NLS (Official YouTube)",
+                  "url": "https://www.youtube.com/@NLS_offiziell",
+                  "requiresPayment": false,
+                  "liveCoverage": true,
+                  "notes": "Every NLS round streams free, live and uninterrupted on the official NLS YouTube channel — German feed with an English commentary option.",
+                  "sourceUrl": "https://www.nuerburgring-langstrecken-serie.de",
+                  "lastVerifiedAt": "2026-05-18T21:22:24.062Z",
+                  "archived": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

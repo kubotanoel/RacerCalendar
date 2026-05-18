@@ -4,6 +4,12 @@ export type SnapshotWatchOptionInput = {
   platform: string;
   url: string;
   requiresPayment?: boolean;
+  /**
+   * `true` (default) = this option carries the race live.
+   * `false` = free post-session highlights / clips only (e.g. F1 official YouTube).
+   * The "Only free live streams" filter requires `requiresPayment=false AND liveCoverage=true`.
+   */
+  liveCoverage?: boolean;
   notes?: string | null;
   regions?: string | null;
   sourceUrl?: string | null;

@@ -35,8 +35,10 @@ export async function querySessionsForFeed(
   };
 
   if (payload.freeOnly) {
+    // "Free" means there is at least one option that is BOTH no-cost AND carries the
+    // race live. Free highlights/clips alone (e.g. F1 YouTube) don't count.
     baseWhere.watchOptions = {
-      some: { archived: false, requiresPayment: false },
+      some: { archived: false, requiresPayment: false, liveCoverage: true },
     };
   }
 

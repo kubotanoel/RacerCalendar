@@ -39,13 +39,18 @@ See [.env.example](.env.example) for commentary on Google **service-account** ca
 
 Two ingestion paths, both feeding the same validator (`src/lib/ingest/upsert-snapshot.ts`):
 
-1. **Curated snapshot file** (used by the F1 2026 calendar shipped in this repo):
+1. **Curated snapshot files** shipped in this repo:
 
-   - Source of truth: [scripts/build-f1-2026-snapshot.ts](scripts/build-f1-2026-snapshot.ts) — a typed table of every round (slug, venue, IANA timezone, race UTC start, weekend window).
-   - Run `npm run build:f1-2026` to regenerate `data/f1-2026.snapshot.json`.
+   - `data/f1-2026.snapshot.json` — 22-round Formula 1 World Championship 2026. Source of truth: [scripts/build-f1-2026-snapshot.ts](scripts/build-f1-2026-snapshot.ts). Destructive (`replace: true`).
+   - `data/sportscar-2026.snapshot.json` — FIA WEC (8 rounds inc. Le Mans), IMSA WeatherTech (11 rounds), and the NLS Nordschleife endurance series (10 rounds). Source of truth: [scripts/build-sportscar-2026-snapshot.ts](scripts/build-sportscar-2026-snapshot.ts). Additive (`replace: false`).
+   - Regenerate with `npm run build:f1-2026` / `npm run build:sportscar-2026` after editing the typed tables in the corresponding script.
    - The JSON shape matches [data/example.snapshot.json](data/example.snapshot.json).
 
 2. **Any other JSON snapshot**: build a `{ "series": [ … ] }` bundle following the same shape.
+
+### "Free" vs "Live"
+
+`WatchOption.requiresPayment` indicates cost; `WatchOption.liveCoverage` indicates whether the option carries the race **live** (`true`) or merely free post-session highlights / clips (`false`). The landing toggle "Only free live streams" requires both `requiresPayment=false AND liveCoverage=true` so users aren't misled into thinking F1's free YouTube clips are a live broadcast.
 
 ### Pushing data to a deployed instance
 

@@ -366,6 +366,9 @@ function buildBundle(): SnapshotBundleInput {
                   platform: "Formula 1 (Official YouTube)",
                   url: "https://www.youtube.com/@Formula1",
                   requiresPayment: false,
+                  // Highlights-only — Formula 1 does not stream the race live on YouTube
+                  // in any region. The "Only free live streams" filter must skip this row.
+                  liveCoverage: false,
                   notes:
                     "Free post-session highlights and clips. Live race coverage is not on YouTube; check your local F1 rights holder for live broadcast.",
                   sourceUrl: "https://www.formula1.com",

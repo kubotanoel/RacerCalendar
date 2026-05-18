@@ -402,7 +402,7 @@ export function HomeClient({ landingData }: { landingData: LandingShellData }) {
                   role="switch"
                   aria-checked={freeOnly}
                   aria-labelledby="free-only-heading free-only-hint"
-                  title="Sessions need at least one free stream in our data."
+                  title="Sessions need at least one option that is BOTH free of charge AND carries the race live. Free post-race highlights (e.g. F1 YouTube) don't count."
                   id="free-only-switch"
                   onClick={() => setFreeOnly(!freeOnly)}
                   className="flex min-h-[52px] items-center justify-between gap-6 rounded-2xl border border-[var(--border-muted-strong)] bg-[var(--surface-elevated)] px-5 py-4 text-left shadow-sm transition motion-reduce:transition-none hover:border-orange-400/70 hover:bg-[var(--surface-muted)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 active:bg-[var(--surface-muted)] lg:max-w-md lg:min-h-0 lg:py-3.5 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-zinc-600"
@@ -412,10 +412,10 @@ export function HomeClient({ landingData }: { landingData: LandingShellData }) {
                       id="free-only-heading"
                       className="text-[15px] font-medium text-stone-900 dark:text-zinc-100"
                     >
-                      Only show free streams
+                      Only free live streams
                     </p>
                     <p id="free-only-hint" className="mt-0.5 text-[13px] text-[var(--text-secondary)] dark:text-zinc-500">
-                      Hides races we only know as paid-only.
+                      Hides paid-only races and free-but-highlights-only feeds.
                     </p>
                   </div>
                   <span

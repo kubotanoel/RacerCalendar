@@ -58,6 +58,7 @@ async function upsertWatchOptionsForSession(
           platform: w.platform.trim(),
           url: w.url.trim(),
           requiresPayment: w.requiresPayment !== false,
+          liveCoverage: w.liveCoverage !== false,
           notes: typeof w.notes === "string" ? w.notes : w.notes == null ? null : String(w.notes),
           regions:
             typeof w.regions === "string" ? w.regions : w.regions == null ? null : String(w.regions),

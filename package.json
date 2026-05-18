@@ -9,6 +9,7 @@
     "lint": "eslint",
     "db:seed": "prisma db seed",
     "build:f1-2026": "tsx scripts/build-f1-2026-snapshot.ts",
+    "build:sportscar-2026": "tsx scripts/build-sportscar-2026-snapshot.ts",
     "import:snapshot": "tsx scripts/import-snapshot.ts",
     "postinstall": "prisma generate"
   },
