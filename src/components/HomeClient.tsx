@@ -74,6 +74,13 @@ export function HomeClient({ landingData }: { landingData: LandingShellData }) {
     setPicked(new Set());
   }, []);
 
+  const resetAllFilters = useCallback(() => {
+    setPicked(new Set());
+    setFreeOnly(false);
+  }, []);
+
+  const filtersActive = picked.size > 0 || freeOnly;
+
   useEffect(() => {
     let stale = false;
     const payload = () => ({
@@ -431,7 +438,12 @@ export function HomeClient({ landingData }: { landingData: LandingShellData }) {
                   </p>
                 : null}
 
-                <FilterStatusBanner sessionCount={sessionCount} dbTotals={dbTotals} />
+                <FilterStatusBanner
+                  sessionCount={sessionCount}
+                  dbTotals={dbTotals}
+                  filtersActive={filtersActive}
+                  onResetFilters={resetAllFilters}
+                />
               </div>
             </div>
 

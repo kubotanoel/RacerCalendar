@@ -30,7 +30,7 @@ export function LandingDisclaimer({ className = "" }: { className?: string }) {
           href="/api/health"
           className="text-orange-700 underline underline-offset-2 hover:text-orange-900 dark:text-orange-400 dark:hover:text-orange-300"
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
         >
           Service health (JSON)
         </Link>

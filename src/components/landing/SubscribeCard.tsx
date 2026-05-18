@@ -235,7 +235,7 @@ export function SubscribeCard({
               <Link
                 href={urls.googleImportHelp}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="text-[var(--text-secondary)] underline-offset-4 hover:text-stone-900 hover:underline focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 dark:text-zinc-500 dark:hover:text-zinc-300"
               >
                 Google: Import
@@ -243,7 +243,7 @@ export function SubscribeCard({
               <Link
                 href={urls.googleSubscribeHelp}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="text-[var(--text-secondary)] underline-offset-4 hover:text-stone-900 hover:underline focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 dark:text-zinc-500 dark:hover:text-zinc-300"
               >
                 Google: Subscribe URL
@@ -251,7 +251,7 @@ export function SubscribeCard({
               <Link
                 href={urls.appleSubscribedCalendarHelp}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="text-[var(--text-secondary)] underline-offset-4 hover:text-stone-900 hover:underline focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 dark:text-zinc-500 dark:hover:text-zinc-300"
               >
                 Apple: Subscribed calendars
@@ -259,7 +259,7 @@ export function SubscribeCard({
               <Link
                 href={urls.googleWebAddByUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="text-[var(--text-secondary)] underline-offset-4 hover:text-stone-900 hover:underline focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 dark:text-zinc-500 dark:hover:text-zinc-300"
               >
                 Gmail: Web add-by-URL

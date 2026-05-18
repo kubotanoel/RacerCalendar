@@ -61,6 +61,8 @@ model Session {
   watchOptions   WatchOption[]
 
   @@unique([eventId, externalKey])
+  /** Feed/sign hot path filters on endsAt and orders by startsAt; composite covers both. */
+  @@index([endsAt, startsAt])
 }
 
 model WatchOption {

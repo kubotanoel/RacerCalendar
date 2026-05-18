@@ -33,7 +33,7 @@ export function GoogleCompactHelp({
         <Link
           href={googleWebImportExport}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="rounded font-medium text-orange-600 underline underline-offset-2 hover:text-orange-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 dark:text-orange-300 dark:hover:text-orange-200"
         >
           Gmail import &amp; export
@@ -42,7 +42,7 @@ export function GoogleCompactHelp({
         <Link
           href="https://formulacalendar.com/subscribe/"
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="rounded font-medium text-orange-600 underline underline-offset-2 hover:text-orange-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 dark:text-orange-300 dark:hover:text-orange-200"
         >
           Formula&nbsp;Calendar

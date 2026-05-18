@@ -3,9 +3,18 @@ type DbTotals = { sessionRows: number; upcomingRows: number };
 type Props = {
   sessionCount: number | null;
   dbTotals: DbTotals | null;
+  /** Are any filter controls (categories or free-only) currently restricting results? */
+  filtersActive?: boolean;
+  /** Reset every filter (clear categories, free-only off). Required for the empty-state action. */
+  onResetFilters?: () => void;
 };
 
-export function FilterStatusBanner({ sessionCount, dbTotals }: Props) {
+export function FilterStatusBanner({
+  sessionCount,
+  dbTotals,
+  filtersActive = false,
+  onResetFilters,
+}: Props) {
   if (sessionCount === null) return null;
 
   const commonCard =
@@ -54,9 +63,21 @@ export function FilterStatusBanner({ sessionCount, dbTotals }: Props) {
         >
           <p className="font-medium text-amber-900 dark:text-amber-50">Nothing matches these filters.</p>
           <p className="mt-2 max-w-prose text-xs leading-relaxed text-amber-900 dark:text-amber-200/90">
-            There are upcoming races in the database, but none match what you chose. Try{" "}
-            <strong>Only free streams</strong>, different series, or clear series so Everything applies.
+            There are{" "}
+            <strong className="text-amber-900 dark:text-amber-50">{dbTotals.upcomingRows}</strong>{" "}
+            upcoming race {dbTotals.upcomingRows === 1 ? "session" : "sessions"} in the database, but none match what you chose.
           </p>
+          {filtersActive && onResetFilters ?
+            <div className="mt-3">
+              <button
+                type="button"
+                onClick={onResetFilters}
+                className="inline-flex min-h-[40px] items-center justify-center rounded-lg bg-amber-600 px-3 py-2 text-[13px] font-medium text-white shadow-sm transition hover:bg-amber-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 dark:bg-amber-500 dark:text-amber-950 dark:hover:bg-amber-400"
+              >
+                Reset filters · show every upcoming race
+              </button>
+            </div>
+          : null}
         </div>
       );
     }
@@ -72,6 +93,17 @@ export function FilterStatusBanner({ sessionCount, dbTotals }: Props) {
           </code>
           ).
         </p>
+        {filtersActive && onResetFilters ?
+          <div className="mt-3">
+            <button
+              type="button"
+              onClick={onResetFilters}
+              className="inline-flex min-h-[40px] items-center justify-center rounded-lg bg-amber-600 px-3 py-2 text-[13px] font-medium text-white shadow-sm transition hover:bg-amber-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 dark:bg-amber-500 dark:text-amber-950 dark:hover:bg-amber-400"
+            >
+              Reset filters
+            </button>
+          </div>
+        : null}
       </div>
     );
   }

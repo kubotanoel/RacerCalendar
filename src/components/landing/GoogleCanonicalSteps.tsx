@@ -38,7 +38,7 @@ export function GoogleCanonicalSteps({
               <Link
                 href="https://calendar.google.com/"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="rounded font-medium text-orange-600 underline underline-offset-2 hover:text-orange-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 dark:text-orange-400 dark:hover:text-orange-300"
               >
                 calendar.google.com
@@ -57,7 +57,7 @@ export function GoogleCanonicalSteps({
               <Link
                 href={googleImportHelp}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="rounded font-medium text-orange-600 underline underline-offset-2 hover:text-orange-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 dark:text-orange-400 dark:hover:text-orange-300"
               >
                 import events
@@ -104,7 +104,7 @@ export function GoogleCanonicalSteps({
               <Link
                 href={googleSubscribeHelp}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="rounded font-medium text-orange-600 underline underline-offset-2 hover:text-orange-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 dark:text-orange-400 dark:hover:text-orange-300"
               >
                 subscribe from URL
